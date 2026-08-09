@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useShop } from '../context/ShopContext';
-import { X, Star, ShieldCheck, Truck, ShoppingBag, Heart, CheckCircle } from 'lucide-react';
+import { fallbackProductImage } from '../data/products';
+import { X, Star, ShieldCheck, Truck, ShoppingBag, Heart } from 'lucide-react';
 
 export const ProductModal = () => {
   const { 
@@ -36,6 +37,10 @@ export const ProductModal = () => {
               <img 
                 src={productModal.image} 
                 alt={productModal.title} 
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = fallbackProductImage;
+                }}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>

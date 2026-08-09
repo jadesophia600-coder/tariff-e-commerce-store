@@ -406,6 +406,8 @@ export const mockProducts = [
   }
 ];
 
+export const fallbackProductImage = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80';
+
 export const promoCodes = {
   'TARIFF2026': { discountPercent: 20, desc: '20% OFF Site-wide' },
   'FLASH80': { discountPercent: 30, desc: 'Extra 30% OFF Flash Sale' },

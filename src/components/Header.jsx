@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useShop } from '../context/ShopContext';
-import { Search, ShoppingBag, Heart, ShieldCheck, Zap, Globe, Sparkles, User } from 'lucide-react';
+import { Search, ShoppingBag, Heart, ShieldCheck, Zap, Globe, Sparkles } from 'lucide-react';
 
 export const Header = () => {
   const { 
@@ -16,11 +16,29 @@ export const Header = () => {
     setProfileOpen
   } = useShop();
 
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const [prevScrollY, setPrevScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > 60 && currentScrollY > prevScrollY) {
+        setHeaderHidden(true);
+      } else {
+        setHeaderHidden(false);
+      }
+      setPrevScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollY]);
+
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <>
-      {/* Top Announcement Ticker */}
+    <div className={`sticky-header-container ${headerHidden ? 'header-hidden' : ''}`}>
+      {/* Top Announcement Bar */}
       <div className="top-ticker-bar">
         <div className="top-ticker-content">
           <Zap size={15} className="animate-pulse-glow" />
@@ -94,6 +112,10 @@ export const Header = () => {
               <img 
                 src={userProfile.avatar} 
                 alt={userProfile.name} 
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80';
+                }}
                 style={{ width: '22px', height: '22px', borderRadius: '50%', border: '1px solid #7C3AED', objectFit: 'cover' }} 
               />
               <span>{userProfile.name.split(' ')[0]}</span>
@@ -124,6 +146,6 @@ export const Header = () => {
 
         </div>
       </header>
-    </>
+    </div>
   );
 };

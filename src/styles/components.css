@@ -1,3 +1,19 @@
+/* Sticky Header Container & Scroll Hide Animation */
+.sticky-header-container {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.sticky-header-container.header-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Top Announcement Bar */
 .top-ticker-bar {
   background: linear-gradient(90deg, #5B21B6 0%, #7C3AED 50%, #059669 100%);
@@ -28,9 +44,6 @@
 
 /* Header */
 .main-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
   background: var(--bg-header);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -756,7 +769,7 @@
   margin-bottom: 0;
   color: #fff;
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 1.15rem;
 }
 
 .btn-checkout {

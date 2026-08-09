@@ -1,5 +1,6 @@
 import React from 'react';
 import { useShop } from '../context/ShopContext';
+import { fallbackProductImage } from '../data/products';
 import { Star, Heart, ShoppingBag, ShieldCheck, Eye } from 'lucide-react';
 
 export const ProductCard = ({ product }) => {
@@ -39,6 +40,10 @@ export const ProductCard = ({ product }) => {
           src={product.image} 
           alt={product.title} 
           className="product-img" 
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = fallbackProductImage;
+          }}
           onClick={() => setProductModal(product)}
           style={{ cursor: 'pointer' }}
         />
