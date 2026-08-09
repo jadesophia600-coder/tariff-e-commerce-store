@@ -1,6 +1,6 @@
 import React from 'react';
-import { useShop, currencies } from '../context/ShopContext';
-import { Search, ShoppingBag, Heart, ShieldCheck, Zap, Globe, Sparkles } from 'lucide-react';
+import { useShop } from '../context/ShopContext';
+import { Search, ShoppingBag, Heart, ShieldCheck, Zap, Globe, Sparkles, User } from 'lucide-react';
 
 export const Header = () => {
   const { 
@@ -10,16 +10,17 @@ export const Header = () => {
     setSearchQuery, 
     setCartOpen, 
     currency, 
-    setCurrency, 
     setSpinWheelOpen,
-    setTariffCalculatorOpen 
+    setTariffCalculatorOpen,
+    userProfile,
+    setProfileOpen
   } = useShop();
 
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <>
-      {/* Top Announcement Bar */}
+      {/* Top Announcement Ticker */}
       <div className="top-ticker-bar">
         <div className="top-ticker-content">
           <Zap size={15} className="animate-pulse-glow" />
@@ -50,7 +51,7 @@ export const Header = () => {
               <input
                 type="text"
                 className="search-input"
-                placeholder="Search 1,000,000+ factory-direct items (e.g. OLED Watch, Drone, Headphones)..."
+                placeholder="Search 1,000,000+ factory-direct items (e.g. OLED Watch, Drone, Headphones, Sneakers)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -84,8 +85,23 @@ export const Header = () => {
               <span>Spin Wheel</span>
             </button>
 
+            {/* User Profile & VIP Loyalty Button */}
+            <button 
+              className="action-btn" 
+              onClick={() => setProfileOpen(true)} 
+              title="My User Profile & VIP Club"
+            >
+              <img 
+                src={userProfile.avatar} 
+                alt={userProfile.name} 
+                style={{ width: '22px', height: '22px', borderRadius: '50%', border: '1px solid #7C3AED', objectFit: 'cover' }} 
+              />
+              <span>{userProfile.name.split(' ')[0]}</span>
+              <span className="action-badge" style={{ background: '#F59E0B', fontSize: '0.55rem' }}>VIP</span>
+            </button>
+
             {/* Wishlist */}
-            <button className="action-btn" title="Saved Items">
+            <button className="action-btn" onClick={() => setProfileOpen(true)} title="Saved Items">
               <Heart size={20} />
               <span>Wishlist</span>
               {wishlist.length > 0 && (
@@ -93,7 +109,7 @@ export const Header = () => {
               )}
             </button>
 
-            {/* Cart Drawer Button */}
+            {/* Cart Drawer Trigger */}
             <button className="action-btn" onClick={() => setCartOpen(true)} title="View Shopping Cart">
               <ShoppingBag size={20} color="#7C3AED" />
               <span>Cart</span>

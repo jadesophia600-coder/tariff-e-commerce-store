@@ -16,23 +16,69 @@ export const currencies = [
 export const ShopProvider = ({ children }) => {
   const [products] = useState(mockProducts);
   const [cart, setCart] = useState([]);
-  const [wishlist, setWishlist] = useState(['prod-1']);
+  const [wishlist, setWishlist] = useState(['prod-1', 'prod-3']);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [currency, setCurrency] = useState(currencies[0]);
   const [activePromo, setActivePromo] = useState(null);
+
+  // Sorting & Filter Controls
+  const [sortBy, setSortBy] = useState('popular'); // 'popular', 'price-low', 'price-high', 'discount'
+  const [priceFilterMax, setPriceFilterMax] = useState(400);
+
+  // User Profile State
+  const [userProfile, setUserProfile] = useState({
+    name: 'Jade Sophia',
+    email: 'jadesophia600@gmail.com',
+    phone: '+1 (555) 019-2834',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+    vipTier: 'Tariff VIP Gold Member',
+    points: 1450,
+    savedTaxId: 'TX-9874-TRF',
+    addresses: [
+      { id: 'addr-1', label: 'Primary Residence', street: '742 Evergreen Terrace', city: 'Springfield', country: 'United States', default: true },
+      { id: 'addr-2', label: 'Office Studio', street: '100 Cyberpunk Way, Suite 400', city: 'Neo Tokyo', country: 'Japan', default: false }
+    ]
+  });
+
+  const [userOrders, setUserOrders] = useState([
+    {
+      orderId: 'TRF-984210',
+      date: 'Aug 08, 2026',
+      total: 89.49,
+      status: 'In Transit — Customs Pre-Cleared',
+      itemsCount: 2,
+      trackingNumber: 'TRF-EXP-889412',
+      items: [
+        { title: 'Tariff CyberPulse OLED Smartwatch Ultra', price: 39.99, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80' },
+        { title: 'Tariff Pods Ultra ANC Earbuds', price: 19.99, image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80' }
+      ]
+    },
+    {
+      orderId: 'TRF-774102',
+      date: 'Jul 24, 2026',
+      total: 54.99,
+      status: 'Delivered',
+      itemsCount: 1,
+      trackingNumber: 'TRF-EXP-554109',
+      items: [
+        { title: 'Tariff CyberStrider Smart LED Sneakers', price: 54.99, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80' }
+      ]
+    }
+  ]);
   
-  // Modals & UI States
+  // UI Modals
   const [cartOpen, setCartOpen] = useState(false);
   const [productModal, setProductModal] = useState(null);
   const [spinWheelOpen, setSpinWheelOpen] = useState(false);
   const [spinWheelUsed, setSpinWheelUsed] = useState(false);
   const [tariffCalculatorOpen, setTariffCalculatorOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(null);
   const [toasts, setToasts] = useState([]);
 
-  // Flash Sale Timer Countdown (HH:MM:SS)
+  // Countdown timer
   const [timeLeft, setTimeLeft] = useState({ hours: 4, minutes: 28, seconds: 45 });
 
   useEffect(() => {
@@ -47,7 +93,6 @@ export const ShopProvider = ({ children }) => {
     return () => clearInterval(timer);
   }, []);
 
-  // Toast Notification System
   const addToast = (message, type = 'info') => {
     const id = Date.now();
     setToasts(prev => [...prev, { id, message, type }]);
@@ -56,7 +101,6 @@ export const ShopProvider = ({ children }) => {
     }, 3500);
   };
 
-  // Cart Actions
   const addToCart = (product, quantity = 1, color = null, size = null) => {
     setCart(prev => {
       const existingIndex = prev.findIndex(item => item.product.id === product.id);
@@ -72,7 +116,7 @@ export const ShopProvider = ({ children }) => {
         selectedSize: size || product.sizes?.[0] 
       }];
     });
-    addToast(`Added "${product.title}" to Tariff Cart!`, 'success');
+    addToast(`Added "${product.title}" to Cart!`, 'success');
   };
 
   const removeFromCart = (productId) => {
@@ -88,7 +132,6 @@ export const ShopProvider = ({ children }) => {
     setCart(prev => prev.map(item => item.product.id === productId ? { ...item, quantity: qty } : item));
   };
 
-  // Wishlist Actions
   const toggleWishlist = (productId) => {
     setWishlist(prev => {
       if (prev.includes(productId)) {
@@ -101,7 +144,6 @@ export const ShopProvider = ({ children }) => {
     });
   };
 
-  // Promo Code Validation
   const applyPromoCode = (code) => {
     const cleanCode = code.trim().toUpperCase();
     if (promoCodes[cleanCode]) {
@@ -114,7 +156,6 @@ export const ShopProvider = ({ children }) => {
     }
   };
 
-  // Currency Formatter
   const formatPrice = (priceInUSD) => {
     const converted = priceInUSD * currency.rate;
     if (currency.code === 'NGN' || currency.code === 'KES') {
@@ -123,7 +164,6 @@ export const ShopProvider = ({ children }) => {
     return `${currency.symbol}${converted.toFixed(2)}`;
   };
 
-  // Price Calculations
   const rawSubtotal = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
   const totalTariffDuty = cart.reduce((sum, item) => sum + ((item.product.tariffDutyAmount || 0) * item.quantity), 0);
   
@@ -139,7 +179,6 @@ export const ShopProvider = ({ children }) => {
   const shippingCost = rawSubtotal > 35 || cart.length === 0 ? 0 : 4.99;
   const finalTotal = Math.max(0, rawSubtotal - discountAmount + totalTariffDuty + shippingCost);
 
-  // Spin Wheel Reward Trigger
   const triggerWheelReward = () => {
     confetti({
       particleCount: 120,
@@ -151,7 +190,6 @@ export const ShopProvider = ({ children }) => {
     addToast('🎉 You won 30% OFF! Code FLASH80 applied automatically.', 'success');
   };
 
-  // Execute Order
   const completeOrder = (shippingInfo) => {
     const orderData = {
       orderId: 'TRF-' + Math.floor(100000 + Math.random() * 900000),
@@ -159,16 +197,26 @@ export const ShopProvider = ({ children }) => {
       items: [...cart],
       total: finalTotal,
       currency: currency,
-      shippingInfo
+      shippingInfo,
+      status: 'Processing — Customs Pre-Cleared'
     };
+
     setOrderSuccess(orderData);
+    setUserOrders(prev => [orderData, ...prev]);
+    setUserProfile(prev => ({ ...prev, points: prev.points + Math.floor(finalTotal * 10) }));
     setCart([]);
     setCheckoutOpen(false);
+
     confetti({
-      particleCount: 150,
+      particleCount: 160,
       spread: 90,
       origin: { y: 0.5 }
     });
+  };
+
+  const updateUserProfile = (newDetails) => {
+    setUserProfile(prev => ({ ...prev, ...newDetails }));
+    addToast('User profile updated successfully!', 'success');
   };
 
   return (
@@ -202,8 +250,13 @@ export const ShopProvider = ({ children }) => {
       setTariffCalculatorOpen,
       checkoutOpen,
       setCheckoutOpen,
+      profileOpen,
+      setProfileOpen,
       orderSuccess,
       setOrderSuccess,
+      userProfile,
+      updateUserProfile,
+      userOrders,
       addToCart,
       removeFromCart,
       updateCartQty,
@@ -211,7 +264,11 @@ export const ShopProvider = ({ children }) => {
       timeLeft,
       toasts,
       addToast,
-      completeOrder
+      completeOrder,
+      sortBy,
+      setSortBy,
+      priceFilterMax,
+      setPriceFilterMax
     }}>
       {children}
     </ShopContext.Provider>
