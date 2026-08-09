@@ -1,0 +1,169 @@
+:root {
+  /* Color Palette - Cyber Luxe & Vibrant Deals */
+  --bg-main: #0B0F19;
+  --bg-card: rgba(18, 24, 38, 0.75);
+  --bg-card-hover: rgba(28, 36, 56, 0.9);
+  --bg-header: rgba(11, 15, 25, 0.85);
+  --bg-modal: #111726;
+
+  /* Accent Colors */
+  --primary: #7C3AED;        /* Electric Violet */
+  --primary-hover: #6D28D9;
+  --primary-light: rgba(124, 58, 237, 0.15);
+  
+  --secondary: #10B981;      /* Luminous Emerald / Free Duty */
+  --secondary-hover: #059669;
+  --secondary-light: rgba(16, 185, 129, 0.15);
+
+  --accent-gold: #F59E0B;     /* Flash Sales / Deal Badges */
+  --accent-red: #EF4444;      /* Price Slash / Urgency Ticker */
+  --accent-cyan: #06B6D4;     /* Tech Badges */
+
+  /* Text Colors */
+  --text-main: #F9FAFB;
+  --text-muted: #9CA3AF;
+  --text-dark: #1F2937;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-highlight: rgba(124, 58, 237, 0.4);
+
+  /* Shadows & Glassmorphism */
+  --glass-bg: rgba(18, 24, 38, 0.65);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --shadow-lg: 0 20px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(124, 58, 237, 0.15);
+  --shadow-glow: 0 0 25px rgba(124, 58, 237, 0.35);
+
+  /* Fonts */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+}
+
+/* Reset & Global */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: #1F293D;
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Global Container */
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Glassmorphism Card Utility */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: var(--glass-border);
+  border-radius: var(--radius-md);
+}
+
+/* Badge Utilities */
+.badge-flash {
+  background: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+}
+
+.badge-tariff-free {
+  background: var(--secondary-light);
+  color: var(--secondary);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Toast System */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.toast-item {
+  pointer-events: auto;
+  background: #1E293B;
+  border-left: 4px solid var(--primary);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  animation: slideInRight 0.3s ease forwards;
+}
+
+.toast-item.success {
+  border-left-color: var(--secondary);
+}
+
+.toast-item.warning {
+  border-left-color: var(--accent-gold);
+}
