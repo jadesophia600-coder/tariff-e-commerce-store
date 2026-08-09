@@ -1,13 +1,76 @@
 export const categories = [
-  { id: 'all', name: 'All Blitz Deals', icon: 'Zap' },
-  { id: 'electronics', name: 'Tech & Gadgets', icon: 'Smartphone' },
-  { id: 'wearables', name: 'Smart Wearables', icon: 'Watch' },
-  { id: 'fashion', name: 'Street Fashion', icon: 'ShoppingBag' },
-  { id: 'audio', name: 'Pro Audio', icon: 'Headphones' },
-  { id: 'hometech', name: 'Smart Home', icon: 'Home' },
-  { id: 'gaming', name: 'Cyber Gaming', icon: 'Gamepad2' },
-  { id: 'beauty', name: 'Beauty & Care', icon: 'Sparkles' },
-  { id: 'sports', name: 'Sports & Outdoors', icon: 'Activity' }
+  { 
+    id: 'all', 
+    name: 'All Factory Direct Deals', 
+    icon: 'Zap', 
+    count: 20, 
+    image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80', 
+    description: 'Explore 1,000,000+ factory-direct mega discounts with zero hidden tax.' 
+  },
+  { 
+    id: 'electronics', 
+    name: 'Phones & Tech Gadgets', 
+    icon: 'Smartphone', 
+    count: 5, 
+    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80', 
+    description: 'Smartphones, 4K Drones, Slim Laptops & Curved Monitors' 
+  },
+  { 
+    id: 'wearables', 
+    name: 'Smart Wearables', 
+    icon: 'Watch', 
+    count: 3, 
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80', 
+    description: 'AMOLED Smartwatches, Health Rings & Fitness Trackers' 
+  },
+  { 
+    id: 'fashion', 
+    name: 'Streetwear & Apparel', 
+    icon: 'ShoppingBag', 
+    count: 3, 
+    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80', 
+    description: 'LED Sneakers, Reflective Hoodies & Anti-theft Backpacks' 
+  },
+  { 
+    id: 'audio', 
+    name: 'Pro Audio & Sound', 
+    icon: 'Headphones', 
+    count: 3, 
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80', 
+    description: 'ANC Headphones, Spatial Earbuds & Wireless Speakers' 
+  },
+  { 
+    id: 'hometech', 
+    name: 'Smart Home & Living', 
+    icon: 'Home', 
+    count: 2, 
+    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80', 
+    description: 'LiDAR Robot Vacuums, RGB Ambient Lighting & Home Tech' 
+  },
+  { 
+    id: 'gaming', 
+    name: 'Cyber Gaming Gear', 
+    icon: 'Gamepad2', 
+    count: 3, 
+    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80', 
+    description: 'VR Motion Kits, Mechanical Keyboards & Light Mice' 
+  },
+  { 
+    id: 'beauty', 
+    name: 'Beauty & Skincare', 
+    icon: 'Sparkles', 
+    count: 2, 
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80', 
+    description: 'Microcurrent Facial Wands & High-Speed Ionic Hair Dryers' 
+  },
+  { 
+    id: 'sports', 
+    name: 'Sports & Fitness', 
+    icon: 'Activity', 
+    count: 2, 
+    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80', 
+    description: 'Percussion Massage Guns, Fitness Tech & Gym Gear' 
+  }
 ];
 
 export const mockProducts = [
@@ -164,7 +227,28 @@ export const mockProducts = [
     sizes: ['M', 'L', 'XL', 'XXL']
   },
 
-  // 4. Electronics & Tech
+  // 4. Electronics & Phones
+  {
+    id: 'prod-19',
+    title: 'Tariff Phone Ultra 5G Curved OLED Smartphone',
+    category: 'electronics',
+    price: 249.99,
+    originalPrice: 799.99,
+    discountPercent: 68,
+    rating: 4.9,
+    reviewsCount: 4890,
+    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 75,
+    stockClaimed: 62,
+    isFlashSale: true,
+    tariffRatePercent: 0,
+    tariffDutyAmount: 0.00,
+    guaranteedDeliveryDays: '2-4 Days Express',
+    description: 'Flagship 5G smartphone with 200MP Leica quad camera, 120Hz LTPO AMOLED curved screen, 5000mAh battery, and 120W fast charging.',
+    features: ['200MP Quad Camera', '120Hz LTPO Screen', '5000mAh / 120W Charge', 'Snapdragon 8 Gen 3'],
+    colors: ['#0B0F19', '#7C3AED', '#D1D5DB'],
+    sizes: ['256GB', '512GB']
+  },
   {
     id: 'prod-4',
     title: 'Tariff AeroX 4K HDR Dual-Camera Obstacle Avoidance Drone',

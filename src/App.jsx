@@ -3,6 +3,7 @@ import { ShopProvider, useShop } from './context/ShopContext';
 import { Header } from './components/Header';
 import { HeroBanner } from './components/HeroBanner';
 import { FlashSales } from './components/FlashSales';
+import { CategoryShowcase } from './components/CategoryShowcase';
 import { CategoryPills } from './components/CategoryPills';
 import { FilterBar } from './components/FilterBar';
 import { ProductCard } from './components/ProductCard';
@@ -62,7 +63,10 @@ const MainContent = () => {
         {/* Flash Sales Section */}
         <FlashSales />
 
-        {/* Category Pills Navigation */}
+        {/* Visual Category Photo Showcase Grid */}
+        <CategoryShowcase />
+
+        {/* Category Pills Navigation Bar */}
         <CategoryPills />
 
         {/* Catalog Section with FilterBar */}
