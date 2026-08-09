@@ -16,15 +16,22 @@ export const currencies = [
 export const ShopProvider = ({ children }) => {
   const [products] = useState(mockProducts);
   const [cart, setCart] = useState([]);
-  const [wishlist, setWishlist] = useState(['prod-1', 'prod-3']);
+  const [wishlist, setWishlist] = useState(['prod-wearables-1', 'prod-fashion-3']);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [currency, setCurrency] = useState(currencies[0]);
   const [activePromo, setActivePromo] = useState(null);
 
-  // Sorting & Filter Controls
+  // Pagination & Sorting Controls
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 24;
   const [sortBy, setSortBy] = useState('popular'); // 'popular', 'price-low', 'price-high', 'discount'
   const [priceFilterMax, setPriceFilterMax] = useState(400);
+
+  // Reset pagination when category, search, or filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, searchQuery, sortBy, priceFilterMax]);
 
   // User Profile State
   const [userProfile, setUserProfile] = useState({
@@ -50,8 +57,8 @@ export const ShopProvider = ({ children }) => {
       itemsCount: 2,
       trackingNumber: 'TRF-EXP-889412',
       items: [
-        { title: 'Tariff CyberPulse OLED Smartwatch Ultra', price: 39.99, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80' },
-        { title: 'Tariff Pods Ultra ANC Earbuds', price: 19.99, image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80' }
+        { title: 'Tariff CyberPulse OLED Smartwatch Ultra 100 Series', price: 39.99, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80' },
+        { title: 'Tariff Pods Ultra ANC Earbuds 107 Series', price: 19.99, image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80' }
       ]
     },
     {
@@ -62,7 +69,7 @@ export const ShopProvider = ({ children }) => {
       itemsCount: 1,
       trackingNumber: 'TRF-EXP-554109',
       items: [
-        { title: 'Tariff CyberStrider Smart LED Sneakers', price: 54.99, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80' }
+        { title: 'Tariff CyberStrider Smart LED Sneakers 114 Series', price: 54.99, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80' }
       ]
     }
   ]);
@@ -268,7 +275,10 @@ export const ShopProvider = ({ children }) => {
       sortBy,
       setSortBy,
       priceFilterMax,
-      setPriceFilterMax
+      setPriceFilterMax,
+      currentPage,
+      setCurrentPage,
+      itemsPerPage
     }}>
       {children}
     </ShopContext.Provider>

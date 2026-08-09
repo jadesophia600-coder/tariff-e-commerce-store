@@ -7,6 +7,7 @@ import { CategoryShowcase } from './components/CategoryShowcase';
 import { CategoryPills } from './components/CategoryPills';
 import { FilterBar } from './components/FilterBar';
 import { ProductCard } from './components/ProductCard';
+import { Pagination } from './components/Pagination';
 import { ProductModal } from './components/ProductModal';
 import { CartDrawer } from './components/CartDrawer';
 import { SpinWheelModal } from './components/SpinWheelModal';
@@ -22,7 +23,16 @@ import './styles/components.css';
 import './styles/animations.css';
 
 const MainContent = () => {
-  const { products, selectedCategory, searchQuery, toasts, sortBy, priceFilterMax } = useShop();
+  const { 
+    products, 
+    selectedCategory, 
+    searchQuery, 
+    toasts, 
+    sortBy, 
+    priceFilterMax,
+    currentPage,
+    itemsPerPage
+  } = useShop();
 
   // Filter products by category, search query, and max price
   const filteredProducts = products.filter((product) => {
@@ -41,6 +51,12 @@ const MainContent = () => {
     if (sortBy === 'rating') return b.rating - a.rating;
     return b.reviewsCount - a.reviewsCount; // default popular
   });
+
+  // Slice for current page (24 items per page)
+  const paginatedProducts = sortedProducts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -84,11 +100,15 @@ const MainContent = () => {
                 </p>
               </div>
             ) : (
-              <div className="products-grid">
-                {sortedProducts.map(product => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
+              <>
+                <div className="products-grid">
+                  {paginatedProducts.map(product => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+
+                <Pagination totalItems={sortedProducts.length} />
+              </>
             )}
 
           </div>

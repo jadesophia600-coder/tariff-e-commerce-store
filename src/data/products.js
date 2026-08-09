@@ -3,492 +3,203 @@ export const categories = [
     id: 'all', 
     name: 'All Factory Direct Deals', 
     icon: 'Zap', 
-    count: 20, 
+    count: 12000, 
     image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80', 
-    description: 'Explore 1,000,000+ factory-direct mega discounts with zero hidden tax.' 
+    description: 'Explore 12,000+ factory-direct mega discounts with zero hidden tax.' 
   },
   { 
     id: 'electronics', 
     name: 'Phones & Tech Gadgets', 
     icon: 'Smartphone', 
-    count: 5, 
+    count: 1500, 
     image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80', 
-    description: 'Smartphones, 4K Drones, Slim Laptops & Curved Monitors' 
+    description: 'Smartphones, 4K Drones, Slim Laptops & Curved Monitors (1,500+ Items)' 
   },
   { 
     id: 'wearables', 
     name: 'Smart Wearables', 
     icon: 'Watch', 
-    count: 3, 
+    count: 1500, 
     image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80', 
-    description: 'AMOLED Smartwatches, Health Rings & Fitness Trackers' 
+    description: 'AMOLED Smartwatches, Health Rings & Bio Trackers (1,500+ Items)' 
   },
   { 
     id: 'fashion', 
     name: 'Streetwear & Apparel', 
     icon: 'ShoppingBag', 
-    count: 3, 
+    count: 1500, 
     image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80', 
-    description: 'LED Sneakers, Reflective Hoodies & Anti-theft Backpacks' 
+    description: 'LED Sneakers, Reflective Hoodies & Anti-theft Backpacks (1,500+ Items)' 
   },
   { 
     id: 'audio', 
     name: 'Pro Audio & Sound', 
     icon: 'Headphones', 
-    count: 3, 
+    count: 1500, 
     image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80', 
-    description: 'ANC Headphones, Spatial Earbuds & Wireless Speakers' 
+    description: 'ANC Headphones, Spatial Earbuds & Bluetooth Speakers (1,500+ Items)' 
   },
   { 
     id: 'hometech', 
     name: 'Smart Home & Living', 
     icon: 'Home', 
-    count: 2, 
+    count: 1500, 
     image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80', 
-    description: 'LiDAR Robot Vacuums, RGB Ambient Lighting & Home Tech' 
+    description: 'LiDAR Robot Vacuums, RGB Ambient Lighting & Home Tech (1,500+ Items)' 
   },
   { 
     id: 'gaming', 
     name: 'Cyber Gaming Gear', 
     icon: 'Gamepad2', 
-    count: 3, 
+    count: 1500, 
     image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80', 
-    description: 'VR Motion Kits, Mechanical Keyboards & Light Mice' 
+    description: 'VR Motion Kits, Mechanical Keyboards & Light Mice (1,500+ Items)' 
   },
   { 
     id: 'beauty', 
     name: 'Beauty & Skincare', 
     icon: 'Sparkles', 
-    count: 2, 
+    count: 1500, 
     image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80', 
-    description: 'Microcurrent Facial Wands & High-Speed Ionic Hair Dryers' 
+    description: 'Microcurrent Facial Wands & High-Speed Ionic Hair Dryers (1,500+ Items)' 
   },
   { 
     id: 'sports', 
     name: 'Sports & Fitness', 
     icon: 'Activity', 
-    count: 2, 
+    count: 1500, 
     image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80', 
-    description: 'Percussion Massage Guns, Fitness Tech & Gym Gear' 
+    description: 'Percussion Massage Guns, Fitness Tech & Gym Gear (1,500+ Items)' 
   }
 ];
 
-export const mockProducts = [
-  // 1. Wearables
-  {
-    id: 'prod-1',
-    title: 'Tariff CyberPulse OLED Smartwatch Ultra',
-    category: 'wearables',
-    price: 39.99,
-    originalPrice: 199.99,
-    discountPercent: 80,
-    rating: 4.9,
-    reviewsCount: 3842,
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 100,
-    stockClaimed: 87,
-    isFlashSale: true,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '3-5 Days Express',
-    description: 'Next-gen titanium body, 1.9-inch AMOLED retina display, ECG bio-sensors, custom neon watch faces, and 14-day battery life.',
-    features: ['Titanium Case', 'SpO2 Monitoring', '5 ATM Water Resistant', 'Dual GPS'],
-    colors: ['#7C3AED', '#0B0F19', '#10B981'],
-    sizes: ['44mm', '49mm']
-  },
-  {
-    id: 'prod-9',
-    title: 'Tariff FitRing Pro Biomark Health Tracker',
-    category: 'wearables',
-    price: 29.99,
-    originalPrice: 149.99,
-    discountPercent: 80,
-    rating: 4.8,
-    reviewsCount: 1420,
-    image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 90,
-    stockClaimed: 78,
-    isFlashSale: true,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '2-4 Days',
-    description: 'Sleek smart titanium ring tracking sleep stages, skin temperature, and workout intensity without screen distractions.',
-    features: ['Titanium Finish', '7-Day Battery', 'Sleep & HRV Scoring', 'Waterproof 100m'],
-    colors: ['#D1D5DB', '#0B0F19', '#F59E0B'],
-    sizes: ['Size 8', 'Size 9', 'Size 10']
-  },
+// Photo pools for category-matched rendering
+const photoPools = {
+  electronics: [
+    'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80'
+  ],
+  wearables: [
+    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1510017803434-a899398421b3?auto=format&fit=crop&w=800&q=80'
+  ],
+  fashion: [
+    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=800&q=80'
+  ],
+  audio: [
+    'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?auto=format&fit=crop&w=800&q=80'
+  ],
+  hometech: [
+    'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=800&q=80'
+  ],
+  gaming: [
+    'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1622979135225-d2ba269bc1bd?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80'
+  ],
+  beauty: [
+    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80'
+  ],
+  sports: [
+    'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80'
+  ]
+};
 
-  // 2. Audio
-  {
-    id: 'prod-2',
-    title: 'Tariff SoundMatrix Pro Active Noise Canceling Headphones',
-    category: 'audio',
-    price: 49.50,
-    originalPrice: 180.00,
-    discountPercent: 72,
-    rating: 4.8,
-    reviewsCount: 2150,
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 150,
-    stockClaimed: 132,
-    isFlashSale: true,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '2-4 Days Express',
-    description: 'Immersive spatial audio with hybrid active noise cancellation (-45dB). Memory foam earmuffs and 60-hour ultra playtime.',
-    features: ['ANC -45dB', '40mm Beryllium Drivers', 'Low Latency 20ms', 'Multipoint BT 5.4'],
-    colors: ['#7C3AED', '#1F2937', '#F59E0B'],
-    sizes: ['Standard']
-  },
-  {
-    id: 'prod-10',
-    title: 'Tariff Pods Ultra ANC Wireless Earbuds',
-    category: 'audio',
-    price: 19.99,
-    originalPrice: 89.99,
-    discountPercent: 78,
-    rating: 4.7,
-    reviewsCount: 5210,
-    image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 250,
-    stockClaimed: 220,
-    isFlashSale: true,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '2-4 Days',
-    description: 'Crystal clear dual-mic environmental noise cancellation with deep bass boost case battery indicator.',
-    features: ['Smart LED Battery Case', 'ENC Clear Call Mic', '36 Hours Playtime', 'Touch Control'],
-    colors: ['#FFFFFF', '#0B0F19', '#7C3AED'],
-    sizes: ['Compact Case']
-  },
+const prefixList = ['Tariff Cyber', 'Tariff Apex', 'Tariff Pulse', 'Tariff Matrix', 'Tariff Quantum', 'Tariff Pro', 'Tariff Horizon', 'Tariff Stealth', 'Tariff Nova', 'Tariff Titan', 'Tariff Sonic', 'Tariff Aero', 'Tariff Lumina', 'Tariff Edge', 'Tariff Elite'];
 
-  // 3. Fashion
-  {
-    id: 'prod-3',
-    title: 'Tariff CyberStrider Smart LED Athletic Sneakers',
-    category: 'fashion',
-    price: 54.99,
-    originalPrice: 169.99,
-    discountPercent: 68,
-    rating: 4.7,
-    reviewsCount: 1290,
-    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 80,
-    stockClaimed: 64,
-    isFlashSale: true,
-    tariffRatePercent: 5,
-    tariffDutyAmount: 2.75,
-    guaranteedDeliveryDays: '4-6 Days',
-    description: 'Lightweight ergonomic running shoes with reactive impact cushioning and custom illuminated neon sole accents.',
-    features: ['Breathable Fly-knit', 'Cloud Foam Cushion', 'Self-lacing Tension', 'RGB Sole'],
-    colors: ['#EF4444', '#06B6D4', '#1F2937'],
-    sizes: ['US 8', 'US 9', 'US 10', 'US 11']
-  },
-  {
-    id: 'prod-11',
-    title: 'Tariff Urban Cyberpunk Water-Resistant Backpack',
-    category: 'fashion',
-    price: 27.99,
-    originalPrice: 99.99,
-    discountPercent: 72,
-    rating: 4.9,
-    reviewsCount: 980,
-    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 120,
-    stockClaimed: 95,
-    isFlashSale: false,
-    tariffRatePercent: 3,
-    tariffDutyAmount: 0.84,
-    guaranteedDeliveryDays: '3-5 Days',
-    description: 'Anti-theft TSA lock backpack with built-in USB charging port, 17-inch laptop compartment, and rainproof shell.',
-    features: ['Anti-theft TSA Lock', 'USB Pass-through', 'Rainproof Shell', '17 Laptop Slot'],
-    colors: ['#0B0F19', '#374151'],
-    sizes: ['30 Liters']
-  },
-  {
-    id: 'prod-12',
-    title: 'Tariff Neon-Reflective Oversized Streetwear Hoodie',
-    category: 'fashion',
-    price: 22.50,
-    originalPrice: 75.00,
-    discountPercent: 70,
-    rating: 4.8,
-    reviewsCount: 1640,
-    image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 140,
-    stockClaimed: 110,
-    isFlashSale: false,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '3-5 Days',
-    description: 'Premium heavy 450GSM cotton hoodie with subtle 3M reflective Tariff emblem across chest.',
-    features: ['450GSM Heavy Cotton', '3M Reflective Logo', 'Kangaroo Pocket', 'Oversized Fit'],
-    colors: ['#0B0F19', '#7C3AED', '#10B981'],
-    sizes: ['M', 'L', 'XL', 'XXL']
-  },
+const categoryNouns = {
+  electronics: ['Ultra Phone 5G', 'Foldable OLED Phone', '4K Pro Drone', 'Slim Metal Laptop', 'Curved 165Hz Monitor', 'Mini Projection Hub', 'Wireless Charger Pad', 'PowerBank 30000mAh', '8K Action Cam'],
+  wearables: ['OLED Smartwatch', 'Biomark Ring', 'Fitness Tracker Band', 'Solar GPS Watch', 'Pulse HR Monitor', 'ECG Smart Band', 'Titanium Sport Watch'],
+  fashion: ['LED Sneakers', 'Cyberpunk Backpack', 'Reflective Hoodie', 'Waterproof Parka', 'Streetwear Joggers', 'Modular Waist Bag', 'Techwear Vest'],
+  audio: ['ANC Headphones', 'Pods Ultra Earbuds', 'Bone Conduction Headset', 'RGB Desktop Speaker', 'Hi-Fi DAC Amplifier', 'Studio Monitor Buds'],
+  hometech: ['Robot Vacuum Cleaner', 'Ambient Light Bar', 'Smart Air Purifier', 'HD Security Cam', 'Smart Door Lock', 'Automatic Soap Dispenser'],
+  gaming: ['RGB Mechanical Keyboard', 'Ultra Light Mouse', '4K VR Glasses Kit', 'Haptic Gamepad', 'Gaming Headset Stand', 'Streamer Mic Arm'],
+  beauty: ['Microcurrent Facial Wand', 'Ionic Hair Dryer', 'LED Therapy Mask', 'Ultrasonic Skin Scrubber', 'Hot Air Styler', 'Electric Cleansing Brush'],
+  sports: ['Percussion Massage Gun', 'Smart Jump Rope', 'Resistance Band Set', 'Hydration Vest', 'Smart Dumbbell Set', 'Recovery Compression Boots']
+};
 
-  // 4. Electronics & Phones
-  {
-    id: 'prod-19',
-    title: 'Tariff Phone Ultra 5G Curved OLED Smartphone',
-    category: 'electronics',
-    price: 249.99,
-    originalPrice: 799.99,
-    discountPercent: 68,
-    rating: 4.9,
-    reviewsCount: 4890,
-    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 75,
-    stockClaimed: 62,
-    isFlashSale: true,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '2-4 Days Express',
-    description: 'Flagship 5G smartphone with 200MP Leica quad camera, 120Hz LTPO AMOLED curved screen, 5000mAh battery, and 120W fast charging.',
-    features: ['200MP Quad Camera', '120Hz LTPO Screen', '5000mAh / 120W Charge', 'Snapdragon 8 Gen 3'],
-    colors: ['#0B0F19', '#7C3AED', '#D1D5DB'],
-    sizes: ['256GB', '512GB']
-  },
-  {
-    id: 'prod-4',
-    title: 'Tariff AeroX 4K HDR Dual-Camera Obstacle Avoidance Drone',
-    category: 'electronics',
-    price: 89.99,
-    originalPrice: 349.99,
-    discountPercent: 74,
-    rating: 4.9,
-    reviewsCount: 4120,
-    image: 'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 60,
-    stockClaimed: 53,
-    isFlashSale: true,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '3-5 Days',
-    description: 'Foldable quadcopter with 4K HDR motorized camera, 360-degree laser obstacle detection, and automatic return home.',
-    features: ['4K HDR Video @ 60fps', '3-Axis Gimbal', 'Laser Sensing', '35 Mins Flight'],
-    colors: ['#1F2937', '#10B981'],
-    sizes: ['Fly More Combo']
-  },
-  {
-    id: 'prod-8',
-    title: 'Tariff Horizon 4K Curved Gaming Monitor 165Hz',
-    category: 'electronics',
-    price: 189.99,
-    originalPrice: 599.99,
-    discountPercent: 68,
-    rating: 4.9,
-    reviewsCount: 890,
-    image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 40,
-    stockClaimed: 31,
-    isFlashSale: false,
-    tariffRatePercent: 6,
-    tariffDutyAmount: 11.40,
-    guaranteedDeliveryDays: '3-6 Days',
-    description: '1500R curved frameless display, 1ms response time, AMD FreeSync Premium, and HDR400 color precision.',
-    features: ['1500R Curve', '165Hz / 1ms MPRT', '99% sRGB Color', 'Flicker-Free'],
-    colors: ['#0B0F19'],
-    sizes: ['27 Inch', '32 Inch']
-  },
-  {
-    id: 'prod-13',
-    title: 'Tariff UltraBook Pro M2 15-Inch Metal Slim Laptop',
-    category: 'electronics',
-    price: 349.99,
-    originalPrice: 999.99,
-    discountPercent: 65,
-    rating: 4.9,
-    reviewsCount: 760,
-    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 30,
-    stockClaimed: 24,
-    isFlashSale: true,
-    tariffRatePercent: 5,
-    tariffDutyAmount: 17.50,
-    guaranteedDeliveryDays: '3-5 Days',
-    description: 'Ultra-thin aluminum alloy body, 16GB RAM, 512GB NVMe SSD, backlit keyboard, and fingerprint security unlock.',
-    features: ['16GB RAM / 512GB SSD', 'Retina 2.8K Display', 'Fingerprint ID', '18h Battery'],
-    colors: ['#D1D5DB', '#1F2937'],
-    sizes: ['15.6 Inch']
-  },
+// Deterministic generator function for 1,500 products per category
+export function generateProductsForCategory(category, count = 1500) {
+  const photos = photoPools[category] || photoPools.electronics;
+  const nouns = categoryNouns[category] || categoryNouns.electronics;
+  
+  const generated = [];
+  for (let i = 1; i <= count; i++) {
+    const prefix = prefixList[i % prefixList.length];
+    const noun = nouns[i % nouns.length];
+    const modelNum = 100 + (i * 7) % 900;
+    const title = `${prefix} ${noun} ${modelNum} Series`;
 
-  // 5. Gaming
-  {
-    id: 'prod-5',
-    title: 'Tariff PrismGamer RGB Mechanical Wireless Keyboard',
-    category: 'gaming',
-    price: 29.99,
-    originalPrice: 99.99,
-    discountPercent: 70,
-    rating: 4.8,
-    reviewsCount: 1850,
-    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 120,
-    stockClaimed: 95,
-    isFlashSale: false,
-    tariffRatePercent: 4,
-    tariffDutyAmount: 1.20,
-    guaranteedDeliveryDays: '3-5 Days',
-    description: 'Hot-swappable tactile mechanical keyboard with per-key RGB backlighting and tri-mode wireless connection.',
-    features: ['Tactile Switches', 'PBT Keycaps', 'Tri-Mode Wireless', '4000mAh Battery'],
-    colors: ['#0B0F19', '#7C3AED'],
-    sizes: ['75% Compact', 'Full Size']
-  },
-  {
-    id: 'prod-7',
-    title: 'Tariff NeonGlide Ergonomic Wireless Gaming Mouse',
-    category: 'gaming',
-    price: 19.99,
-    originalPrice: 69.99,
-    discountPercent: 71,
-    rating: 4.7,
-    reviewsCount: 1530,
-    image: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 180,
-    stockClaimed: 162,
-    isFlashSale: true,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '2-4 Days',
-    description: 'Ultra-lightweight 58g gaming mouse with 26K DPI optical sensor and PTFE zero-friction feet.',
-    features: ['26,000 DPI Sensor', '58g Ultra Light', '80M Click Switches', 'Paracord Cable'],
-    colors: ['#7C3AED', '#000000', '#FFFFFF'],
-    sizes: ['Standard']
-  },
-  {
-    id: 'prod-14',
-    title: 'Tariff VR Motion Matrix Haptic Glasses Kit',
-    category: 'gaming',
-    price: 129.99,
-    originalPrice: 449.99,
-    discountPercent: 71,
-    rating: 4.9,
-    reviewsCount: 640,
-    image: 'https://images.unsplash.com/photo-1622979135225-d2ba269bc1bd?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 40,
-    stockClaimed: 35,
-    isFlashSale: true,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '3-5 Days',
-    description: 'Standalone wireless 4K VR headset with spatial 3D audio, 120Hz refresh rate, and haptic motion controllers.',
-    features: ['Dual 4K Displays', '120Hz Refresh Rate', 'Spatial 3D Audio', 'Wireless Tracking'],
-    colors: ['#FFFFFF', '#0B0F19'],
-    sizes: ['Complete Kit']
-  },
+    const basePrice = Number((15 + (i * 13.5) % 285).toFixed(2));
+    const discount = 50 + (i * 3) % 41; // 50% to 90% off
+    const origPrice = Number((basePrice / (1 - discount / 100)).toFixed(2));
+    const rating = Number((4.3 + (i % 8) * 0.1).toFixed(1));
+    const reviews = 350 + (i * 47) % 15000;
+    const stockTotal = 50 + (i * 11) % 200;
+    const stockClaimed = Math.floor(stockTotal * (0.6 + (i % 35) * 0.01));
+    const isFlash = (i % 3 === 0);
+    const tariffDuty = (i % 4 === 0) ? 0.00 : Number(((i % 5) * 1.25).toFixed(2));
 
-  // 6. Smart Home
-  {
-    id: 'prod-6',
-    title: 'Tariff Lumina Ambient Smart Light Bar Duo',
-    category: 'hometech',
-    price: 24.99,
-    originalPrice: 79.99,
-    discountPercent: 68,
-    rating: 4.6,
-    reviewsCount: 940,
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 200,
-    stockClaimed: 145,
-    isFlashSale: false,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '2-4 Days',
-    description: 'Sync your TV and gaming setup with 16 million colors and audio-reactive lighting effects controlled via app or voice.',
-    features: ['Music Rhythm Sync', 'Alexa & Google Support', 'Dynamic Light Modes', 'Stand Included'],
-    colors: ['#0B0F19'],
-    sizes: ['Dual Pack']
-  },
-  {
-    id: 'prod-15',
-    title: 'Tariff BotClean Laser Navigation Robot Vacuum',
-    category: 'hometech',
-    price: 119.99,
-    originalPrice: 399.99,
-    discountPercent: 70,
-    rating: 4.8,
-    reviewsCount: 1120,
-    image: 'https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 50,
-    stockClaimed: 42,
-    isFlashSale: true,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '3-5 Days',
-    description: 'LiDAR mapping robot vacuum & mop combo with 4000Pa cyclone suction and automatic self-recharging dock.',
-    features: ['LiDAR 3D Mapping', '4000Pa Suction', 'Vac & Mop Combo', 'Auto Recharge Dock'],
-    colors: ['#FFFFFF', '#0B0F19'],
-    sizes: ['Standard Dock']
-  },
-
-  // 7. Beauty & Personal Care
-  {
-    id: 'prod-16',
-    title: 'Tariff GlowSculpt Microcurrent Facial Toning Wand',
-    category: 'beauty',
-    price: 21.99,
-    originalPrice: 89.99,
-    discountPercent: 75,
-    rating: 4.8,
-    reviewsCount: 2890,
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 180,
-    stockClaimed: 154,
-    isFlashSale: true,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '2-4 Days',
-    description: 'Anti-aging facial sculptor combining red light therapy, thermal massage, and microcurrent lifting in 5 minutes.',
-    features: ['Red Light 660nm', 'Microcurrent Lift', 'Warm 42°C Massage', 'USB-C Rechargeable'],
-    colors: ['#F472B6', '#F59E0B'],
-    sizes: ['Compact Wand']
-  },
-  {
-    id: 'prod-17',
-    title: 'Tariff SilkSonic High-Speed Ionic Hair Dryer',
-    category: 'beauty',
-    price: 34.99,
-    originalPrice: 150.00,
-    discountPercent: 76,
-    rating: 4.9,
-    reviewsCount: 3100,
-    image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 140,
-    stockClaimed: 122,
-    isFlashSale: false,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '2-4 Days',
-    description: '110,000 RPM brushless motor hair dryer drying long hair in 3 minutes while generating 200 million negative ions.',
-    features: ['110,000 RPM Motor', '200M Negative Ions', 'Smart Heat Control', 'Magnetic Nozzles'],
-    colors: ['#7C3AED', '#0B0F19', '#10B981'],
-    sizes: ['Full Kit']
-  },
-
-  // 8. Sports & Outdoors
-  {
-    id: 'prod-18',
-    title: 'Tariff PulseFlex Percussion Massage Gun',
-    category: 'sports',
-    price: 28.99,
-    originalPrice: 110.00,
-    discountPercent: 73,
-    rating: 4.8,
-    reviewsCount: 1950,
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
-    stockTotal: 160,
-    stockClaimed: 135,
-    isFlashSale: true,
-    tariffRatePercent: 0,
-    tariffDutyAmount: 0.00,
-    guaranteedDeliveryDays: '2-4 Days',
-    description: 'Deep tissue muscle recovery massager with 30 adjustable speeds, ultra-quiet brushless motor, and 6 attachment heads.',
-    features: ['30 Speed Levels', '6 Massage Heads', 'Quiet <45dB', 'Carrying Case'],
-    colors: ['#0B0F19', '#10B981'],
-    sizes: ['Pro Case']
+    generated.push({
+      id: `prod-${category}-${i}`,
+      title,
+      category,
+      price: basePrice,
+      originalPrice: origPrice,
+      discountPercent: discount,
+      rating,
+      reviewsCount: reviews,
+      image: photos[i % photos.length],
+      stockTotal,
+      stockClaimed,
+      isFlashSale: isFlash,
+      tariffRatePercent: (i % 4 === 0) ? 0 : 5,
+      tariffDutyAmount: tariffDuty,
+      guaranteedDeliveryDays: `${2 + (i % 3)}-${4 + (i % 3)} Days Express`,
+      description: `Factory-direct premium ${noun.toLowerCase()} featuring high-grade engineering, long battery life, and 100% tax pre-cleared doorstep delivery.`,
+      features: ['Factory Direct Warranty', 'Pre-Cleared Customs Tax', 'Heavy Duty Quality', 'Global Logistics Guaranteed'],
+      colors: ['#7C3AED', '#0B0F19', '#10B981'],
+      sizes: ['Standard']
+    });
   }
+  return generated;
+}
+
+// Generate complete 12,000+ dataset across all 8 categories
+export const allMockProducts = [
+  ...generateProductsForCategory('electronics', 1500),
+  ...generateProductsForCategory('wearables', 1500),
+  ...generateProductsForCategory('fashion', 1500),
+  ...generateProductsForCategory('audio', 1500),
+  ...generateProductsForCategory('hometech', 1500),
+  ...generateProductsForCategory('gaming', 1500),
+  ...generateProductsForCategory('beauty', 1500),
+  ...generateProductsForCategory('sports', 1500)
 ];
+
+export const mockProducts = allMockProducts;
 
 export const fallbackProductImage = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80';
 
