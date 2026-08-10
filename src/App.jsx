@@ -22,8 +22,6 @@ import {
   Sparkles, 
   Store, 
   ShoppingBag, 
-  CheckCircle2, 
-  ShieldCheck,
   Grid
 } from 'lucide-react';
 
@@ -41,37 +39,36 @@ const MainContent = () => {
     priceFilterMax
   } = useShop();
 
-  // --- PROGRAMMATIC PRODUCT DEDUPLICATION ENGINE ---
-  // Ensure homepage sections contain 100% unique items with ZERO repetitions
+  // --- PROGRAMMATIC PRODUCT DEDUPLICATION ENGINE (20 ITEMS PER SECTION) ---
   
-  // 1. Flash Deals (isFlashSale = true)
-  const flashProducts = products.filter(p => p.isFlashSale || p.sectionTag === 'flashDeals').slice(0, 6);
+  // 1. Flash Deals (20 Items)
+  const flashProducts = products.filter(p => p.isFlashSale || p.sectionTag === 'flashDeals').slice(0, 20);
   const flashIds = new Set(flashProducts.map(p => p.id));
 
-  // 2. Best Sellers (deduplicated against Flash)
+  // 2. Best Sellers (20 Items deduplicated against Flash)
   const bestSellersProducts = products
     .filter(p => !flashIds.has(p.id) && (p.sectionTag === 'bestSellers' || p.reviewsCount > 2000))
-    .slice(0, 6);
+    .slice(0, 20);
   const bestSellerIds = new Set(bestSellersProducts.map(p => p.id));
 
-  // 3. Trending Now (deduplicated against Flash & Best Sellers)
+  // 3. Trending Now (20 Items deduplicated against Flash & Best Sellers)
   const trendingProducts = products
     .filter(p => !flashIds.has(p.id) && !bestSellerIds.has(p.id) && (p.sectionTag === 'trending' || p.rating >= 4.8))
-    .slice(0, 6);
+    .slice(0, 20);
   const trendingIds = new Set(trendingProducts.map(p => p.id));
 
-  // 4. New Arrivals (deduplicated against prior sections)
+  // 4. New Arrivals (20 Items deduplicated against prior sections)
   const newArrivalsProducts = products
     .filter(p => !flashIds.has(p.id) && !bestSellerIds.has(p.id) && !trendingIds.has(p.id) && (p.sectionTag === 'newArrivals' || p.id.startsWith('ph-5') || p.id.startsWith('lap-4')))
-    .slice(0, 6);
+    .slice(0, 20);
   const newArrivalIds = new Set(newArrivalsProducts.map(p => p.id));
 
-  // 5. Verified Tariff Mall Stores (deduplicated)
+  // 5. Verified Tariff Mall Stores (20 Items deduplicated)
   const featuredStoreProducts = products
     .filter(p => !flashIds.has(p.id) && !bestSellerIds.has(p.id) && !trendingIds.has(p.id) && !newArrivalIds.has(p.id))
-    .slice(0, 6);
+    .slice(0, 20);
 
-  // --- Filtered Catalog for "All Products" exploration ---
+  // --- Filtered Catalog for Recommended For You & Category Selection ---
   const filteredProducts = products.filter((product) => {
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
     const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -110,48 +107,48 @@ const MainContent = () => {
         {/* Hero Banner with Spin-to-Win Trigger */}
         <HeroBanner />
 
-        {/* SECTION 1: Flash Sales (Dedicated Unique Items) */}
+        {/* SECTION 1: Flash Sales (20 Dedicated Unique Items) */}
         <FlashSales flashProducts={flashProducts} />
 
         {/* SECTION 2: Popular Departments Showcase */}
         <CategoryShowcase />
 
-        {/* SECTION 3: Best Sellers (Deduplicated Unique Items) */}
+        {/* SECTION 3: Best Sellers (20 Dedicated Unique Items) */}
         <ProductSection
           title="BEST SELLERS"
-          subtitle="Top-purchased items across Nigeria with thousands of 5-star reviews"
+          subtitle="20 Top-purchased items across Nigeria with thousands of 5-star reviews"
           icon={Flame}
           products={bestSellersProducts}
-          badgeText="Verified Top Ratings"
+          badgeText="20 Verified Top Ratings"
           bgAlt={true}
         />
 
-        {/* SECTION 4: Trending Now (Deduplicated Unique Items) */}
+        {/* SECTION 4: Trending Now (20 Dedicated Unique Items) */}
         <ProductSection
           title="TRENDING NOW"
-          subtitle="High-demand gadgets, smartphones & fashion trending this week"
+          subtitle="20 High-demand gadgets, smartphones & fashion trending this week"
           icon={TrendingUp}
           products={trendingProducts}
-          badgeText="Fast Shipping"
+          badgeText="20 Fast Shipping"
         />
 
-        {/* SECTION 5: New Arrivals (Deduplicated Unique Items) */}
+        {/* SECTION 5: New Arrivals (20 Dedicated Unique Items) */}
         <ProductSection
           title="NEW ARRIVALS"
-          subtitle="Fresh factory releases imported with pre-cleared customs clearance"
+          subtitle="20 Fresh factory releases imported with pre-cleared customs clearance"
           icon={Sparkles}
           products={newArrivalsProducts}
-          badgeText="Fresh Stock"
+          badgeText="20 Fresh Stock"
           bgAlt={true}
         />
 
-        {/* SECTION 6: Verified Tariff Mall Stores */}
+        {/* SECTION 6: Verified Tariff Mall Stores (20 Dedicated Unique Items) */}
         <ProductSection
           title="VERIFIED BRAND STORES"
-          subtitle="Direct items from Nike, Apple, Samsung, Sony, CeraVe & Dyson official hubs"
+          subtitle="20 Direct items from Nike, Apple, Samsung, Sony, CeraVe & Dyson official hubs"
           icon={Store}
           products={featuredStoreProducts}
-          badgeText="100% Authentic"
+          badgeText="20 Authentic Brands"
         />
 
         {/* SECTION 7: Category Pills Navigation */}
@@ -167,7 +164,7 @@ const MainContent = () => {
               </div>
               <div>
                 <h2 style={{ fontSize: '1.55rem', fontWeight: 800, color: '#0F172A' }}>RECOMMENDED FOR YOU</h2>
-                <p style={{ color: '#64748B', fontSize: '0.85rem' }}>Full catalog with interactive price filters and department selection</p>
+                <p style={{ color: '#64748B', fontSize: '0.85rem' }}>Explore 20+ products available in each department with interactive filters</p>
               </div>
             </div>
 
