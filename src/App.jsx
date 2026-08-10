@@ -22,7 +22,9 @@ import {
   Sparkles, 
   Store, 
   ShoppingBag, 
-  Grid
+  Grid,
+  Sun,
+  Moon
 } from 'lucide-react';
 
 import './styles/index.css';
@@ -36,7 +38,9 @@ const MainContent = () => {
     searchQuery, 
     toasts, 
     sortBy, 
-    priceFilterMax
+    priceFilterMax,
+    theme,
+    toggleTheme
   } = useShop();
 
   // --- PROGRAMMATIC PRODUCT DEDUPLICATION ENGINE (20 ITEMS PER SECTION) ---
@@ -99,6 +103,34 @@ const MainContent = () => {
           </div>
         ))}
       </div>
+
+      {/* Floating Theme Switcher Button (Always Accessible on Screen) */}
+      <button
+        onClick={toggleTheme}
+        title={`Click to switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+        style={{
+          position: 'fixed',
+          bottom: '24px',
+          left: '24px',
+          zIndex: 999,
+          background: theme === 'light' ? '#0F172A' : '#F8FAFC',
+          color: theme === 'light' ? '#F8FAFC' : '#0F172A',
+          border: '2px solid var(--primary)',
+          borderRadius: '50px',
+          padding: '0.65rem 1.25rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          fontWeight: 800,
+          fontSize: '0.85rem',
+          boxShadow: '0 4px 20px rgba(124, 58, 237, 0.4)',
+          cursor: 'pointer',
+          transition: 'all 0.25s ease'
+        }}
+      >
+        {theme === 'light' ? <Moon size={18} color="#C084FC" /> : <Sun size={18} color="#F59E0B" />}
+        <span>{theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}</span>
+      </button>
 
       <Header />
 
@@ -163,18 +195,18 @@ const MainContent = () => {
                 <Grid size={22} />
               </div>
               <div>
-                <h2 style={{ fontSize: '1.55rem', fontWeight: 800, color: '#0F172A' }}>RECOMMENDED FOR YOU</h2>
-                <p style={{ color: '#64748B', fontSize: '0.85rem' }}>Explore 20+ products available in each department with interactive filters</p>
+                <h2 style={{ fontSize: '1.55rem', fontWeight: 800 }}>RECOMMENDED FOR YOU</h2>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Explore 20+ products available in each department with interactive filters</p>
               </div>
             </div>
 
             <FilterBar totalCount={sortedProducts.length} />
 
             {sortedProducts.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '4rem 1rem', background: '#FFFFFF', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
-                <ShoppingBag size={48} color="#94A3B8" style={{ margin: '0 auto 1rem' }} />
-                <h3 style={{ color: '#0F172A', fontSize: '1.25rem' }}>No Products Match Your Filter</h3>
-                <p style={{ color: '#64748B', fontSize: '0.9rem', marginTop: '0.35rem' }}>
+              <div style={{ textAlign: 'center', padding: '4rem 1rem', background: 'var(--bg-card)', borderRadius: '16px', border: '1px solid var(--border-color)' }}>
+                <ShoppingBag size={48} color="var(--text-muted)" style={{ margin: '0 auto 1rem' }} />
+                <h3 style={{ fontSize: '1.25rem' }}>No Products Match Your Filter</h3>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '0.35rem' }}>
                   Try adjusting the price slider or clearing your search term.
                 </p>
               </div>
