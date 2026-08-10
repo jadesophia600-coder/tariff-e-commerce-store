@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useShop } from '../context/ShopContext';
-import { Search, ShoppingBag, Heart, ShieldCheck, Zap, Globe, Sparkles } from 'lucide-react';
+import { Search, ShoppingBag, Heart, ShieldCheck, Zap, Globe, Sparkles, Sun, Moon, User } from 'lucide-react';
 
 export const Header = () => {
   const { 
@@ -13,7 +13,11 @@ export const Header = () => {
     setSpinWheelOpen,
     setTariffCalculatorOpen,
     userProfile,
-    setProfileOpen
+    setProfileOpen,
+    theme,
+    toggleTheme,
+    addToast,
+    products
   } = useShop();
 
   const [headerHidden, setHeaderHidden] = useState(false);
@@ -33,6 +37,28 @@ export const Header = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [prevScrollY]);
+
+  // Active search execution handler
+  const handleExecuteSearch = (e) => {
+    if (e) e.preventDefault();
+    const query = searchQuery.trim();
+    if (!query) {
+      addToast('Please enter a search term (e.g. iPhone, Air Fryer, Sneakers)', 'warning');
+      return;
+    }
+
+    const matches = products.filter(p => 
+      p.title.toLowerCase().includes(query.toLowerCase()) || 
+      p.category.toLowerCase().includes(query.toLowerCase())
+    );
+
+    addToast(`Searching for "${query}" — Found ${matches.length} products!`, 'success');
+
+    const catalogElement = document.getElementById('products-grid');
+    if (catalogElement) {
+      catalogElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -62,10 +88,10 @@ export const Header = () => {
             <span className="logo-tag">MALL</span>
           </a>
 
-          {/* Search Omnibox */}
-          <div className="search-container">
+          {/* Search Omnibox Form */}
+          <form className="search-container" onSubmit={handleExecuteSearch}>
             <div className="search-input-wrap">
-              <Search size={18} color="#64748B" style={{ marginRight: '8px' }} />
+              <Search size={18} color="var(--text-muted)" style={{ marginRight: '8px' }} />
               <input
                 type="text"
                 className="search-input"
@@ -73,15 +99,35 @@ export const Header = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <button className="search-btn">
+              <button type="submit" className="search-btn" title="Click to search catalog">
+                <Search size={16} />
                 <span>Search</span>
               </button>
             </div>
-          </div>
+          </form>
 
           {/* Right Header Actions */}
           <div className="header-actions">
             
+            {/* Theme Toggle Button (Light / Dark Switch) */}
+            <button 
+              className="action-btn"
+              onClick={toggleTheme}
+              title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+              style={{
+                background: 'var(--primary-light)',
+                color: 'var(--primary)',
+                padding: '0.4rem 0.75rem',
+                borderRadius: '20px',
+                flexDirection: 'row',
+                gap: '0.4rem',
+                fontWeight: 700
+              }}
+            >
+              {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+              <span style={{ fontSize: '0.78rem' }}>{theme === 'light' ? 'Dark' : 'Light'} Mode</span>
+            </button>
+
             {/* Currency & Duty Selector */}
             <div 
               className="tariff-info-pill" 
@@ -99,31 +145,34 @@ export const Header = () => {
               onClick={() => setSpinWheelOpen(true)}
               title="Spin Wheel of Savings"
             >
-              <Sparkles size={20} color="#D97706" />
+              <Sparkles size={20} color="var(--accent-gold)" />
               <span>Spin & Win</span>
             </button>
 
-            {/* User Profile & VIP Loyalty Button */}
+            {/* Profile Dashboard Button */}
             <button 
               className="action-btn" 
               onClick={() => setProfileOpen(true)} 
-              title="My User Profile & VIP Club"
+              title="Open Profile Dashboard & Orders"
+              style={{ position: 'relative' }}
             >
-              <img 
-                src={userProfile.avatar} 
-                alt={userProfile.name} 
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80';
-                }}
-                style={{ width: '24px', height: '24px', borderRadius: '50%', border: '2px solid #7C3AED', objectFit: 'cover' }} 
-              />
-              <span>{userProfile.name.split(' ')[0]}</span>
-              <span className="action-badge" style={{ background: '#D97706', fontSize: '0.55rem' }}>VIP</span>
+              <div style={{ position: 'relative' }}>
+                <img 
+                  src={userProfile.avatar} 
+                  alt={userProfile.name} 
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80';
+                  }}
+                  style={{ width: '24px', height: '24px', borderRadius: '50%', border: '2px solid var(--primary)', objectFit: 'cover' }} 
+                />
+              </div>
+              <span>Profile Dashboard</span>
+              <span className="action-badge" style={{ background: 'var(--accent-gold)', fontSize: '0.55rem' }}>VIP</span>
             </button>
 
             {/* Wishlist */}
-            <button className="action-btn" onClick={() => setProfileOpen(true)} title="Saved Items">
+            <button className="action-btn" onClick={() => setProfileOpen(true)} title="Saved Wishlist Items">
               <Heart size={20} />
               <span>Wishlist</span>
               {wishlist.length > 0 && (
@@ -133,10 +182,10 @@ export const Header = () => {
 
             {/* Cart Drawer Trigger */}
             <button className="action-btn" onClick={() => setCartOpen(true)} title="View Shopping Cart">
-              <ShoppingBag size={20} color="#7C3AED" />
+              <ShoppingBag size={20} color="var(--primary)" />
               <span>Cart</span>
               {totalCartCount > 0 && (
-                <span className="action-badge" style={{ background: '#7C3AED' }}>
+                <span className="action-badge" style={{ background: 'var(--primary)' }}>
                   {totalCartCount}
                 </span>
               )}

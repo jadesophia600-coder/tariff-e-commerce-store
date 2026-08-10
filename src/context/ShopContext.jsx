@@ -22,6 +22,20 @@ export const ShopProvider = ({ children }) => {
   const [currency, setCurrency] = useState(currencies[0]); // Default NGN ₦
   const [activePromo, setActivePromo] = useState(null);
 
+  // Light / Dark Theme State with LocalStorage Persistence
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('tariff_theme') || 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('tariff_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  };
+
   // Filter & Sort state
   const [sortBy, setSortBy] = useState('popular');
   const [priceFilterMax, setPriceFilterMax] = useState(2000000);
@@ -178,7 +192,7 @@ export const ShopProvider = ({ children }) => {
     }
   }
 
-  const shippingCost = rawSubtotal > 50000 || cart.length === 0 ? 0 : 3500;
+  const shippingCost = rawSubtotal >= 50000 || cart.length === 0 ? 0 : 3500;
   const finalTotal = Math.max(0, rawSubtotal - discountAmount + totalTariffDuty + shippingCost);
 
   const triggerWheelReward = () => {
@@ -270,7 +284,9 @@ export const ShopProvider = ({ children }) => {
       sortBy,
       setSortBy,
       priceFilterMax,
-      setPriceFilterMax
+      setPriceFilterMax,
+      theme,
+      toggleTheme
     }}>
       {children}
     </ShopContext.Provider>
