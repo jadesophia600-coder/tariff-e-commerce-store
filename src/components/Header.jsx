@@ -12,7 +12,7 @@ export const Header = () => {
     setSpinWheelOpen,
     setTariffCalculatorOpen,
     userProfile,
-    setProfileOpen,
+    openProfileTab,
     theme,
     toggleTheme,
     unreadNotificationsCount,
@@ -132,21 +132,25 @@ export const Header = () => {
               )}
             </button>
 
-            {/* Currency & Duty Selector */}
-            <div 
-              className="tariff-info-pill" 
-              onClick={() => setTariffCalculatorOpen(true)}
-              title="Click to view Transparent Duty Calculator"
+            {/* Wishlist Navigation Trigger */}
+            <button 
+              className="action-btn" 
+              onClick={() => openProfileTab('wishlist')} 
+              title="Open Saved Wishlist"
             >
-              <ShieldCheck size={16} />
-              <span>{currency.code}</span>
-              <Globe size={13} style={{ opacity: 0.7 }} />
-            </div>
+              <Heart size={20} fill={wishlist.length > 0 ? "var(--primary)" : "none"} color="var(--primary)" />
+              <span>Wishlist</span>
+              {wishlist.length > 0 && (
+                <span className="action-badge" style={{ background: 'var(--primary)' }}>
+                  {wishlist.length}
+                </span>
+              )}
+            </button>
 
             {/* Profile Dashboard Button */}
             <button 
               className="action-btn" 
-              onClick={() => setProfileOpen(true)} 
+              onClick={() => openProfileTab('overview')} 
               title="Open Profile Dashboard & Orders"
               style={{ position: 'relative' }}
             >

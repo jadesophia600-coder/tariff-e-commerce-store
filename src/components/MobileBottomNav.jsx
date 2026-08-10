@@ -1,12 +1,13 @@
 import React from 'react';
 import { useShop } from '../context/ShopContext';
-import { Home, Grid, Search, ShoppingBag, User } from 'lucide-react';
+import { Home, Grid, Search, ShoppingBag, User, Heart } from 'lucide-react';
 
 export const MobileBottomNav = () => {
   const { 
     cart, 
+    wishlist,
     setCartOpen, 
-    setProfileOpen, 
+    openProfileTab, 
     setSelectedCategory 
   } = useShop();
 
@@ -56,11 +57,16 @@ export const MobileBottomNav = () => {
       </button>
 
       <button 
-        onClick={handleScrollToGrid}
-        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', color: 'var(--text-muted)', fontSize: '0.725rem', fontWeight: 700 }}
+        onClick={() => openProfileTab('wishlist')}
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', color: 'var(--text-muted)', fontSize: '0.725rem', fontWeight: 700, position: 'relative' }}
       >
-        <Search size={20} />
-        <span>Search</span>
+        <Heart size={20} fill={wishlist.length > 0 ? "var(--primary)" : "none"} color="var(--primary)" />
+        <span>Wishlist</span>
+        {wishlist.length > 0 && (
+          <span style={{ position: 'absolute', top: '-4px', right: '12px', background: 'var(--primary)', color: '#fff', fontSize: '0.6rem', fontWeight: 800, width: '16px', height: '16px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {wishlist.length}
+          </span>
+        )}
       </button>
 
       <button 
@@ -77,7 +83,7 @@ export const MobileBottomNav = () => {
       </button>
 
       <button 
-        onClick={() => setProfileOpen(true)}
+        onClick={() => openProfileTab('overview')}
         style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', color: 'var(--text-muted)', fontSize: '0.725rem', fontWeight: 700 }}
       >
         <User size={20} />
