@@ -15,6 +15,10 @@ import { CheckoutModal } from './components/CheckoutModal';
 import { OrderSuccessModal } from './components/OrderSuccessModal';
 import { TariffCalculatorModal } from './components/TariffCalculatorModal';
 import { UserProfileModal } from './components/UserProfileModal';
+import { SellerStorefrontModal } from './components/SellerStorefrontModal';
+import { BuyerProtectionModal } from './components/BuyerProtectionModal';
+import { NotificationCenterModal } from './components/NotificationCenterModal';
+import { MobileBottomNav } from './components/MobileBottomNav';
 import { Footer } from './components/Footer';
 import { 
   Flame, 
@@ -24,7 +28,9 @@ import {
   ShoppingBag, 
   Grid,
   Sun,
-  Moon
+  Moon,
+  ShieldCheck,
+  Award
 } from 'lucide-react';
 
 import './styles/index.css';
@@ -40,7 +46,8 @@ const MainContent = () => {
     sortBy, 
     priceFilterMax,
     theme,
-    toggleTheme
+    toggleTheme,
+    setBuyerProtectionModal
   } = useShop();
 
   // --- PROGRAMMATIC PRODUCT DEDUPLICATION ENGINE (20 ITEMS PER SECTION) ---
@@ -92,7 +99,7 @@ const MainContent = () => {
   });
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-main)' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-main)', paddingBottom: '60px' }}>
       
       {/* Toast Notifications Overlay */}
       <div className="toast-container">
@@ -104,31 +111,31 @@ const MainContent = () => {
         ))}
       </div>
 
-      {/* Floating Theme Switcher Button (Always Accessible on Screen) */}
+      {/* Floating Theme Switcher Button */}
       <button
         onClick={toggleTheme}
         title={`Click to switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
         style={{
           position: 'fixed',
-          bottom: '24px',
+          bottom: '75px',
           left: '24px',
           zIndex: 999,
           background: theme === 'light' ? '#0F172A' : '#F8FAFC',
           color: theme === 'light' ? '#F8FAFC' : '#0F172A',
           border: '2px solid var(--primary)',
           borderRadius: '50px',
-          padding: '0.65rem 1.25rem',
+          padding: '0.6rem 1.15rem',
           display: 'flex',
           alignItems: 'center',
           gap: '0.5rem',
           fontWeight: 800,
-          fontSize: '0.85rem',
+          fontSize: '0.825rem',
           boxShadow: '0 4px 20px rgba(124, 58, 237, 0.4)',
           cursor: 'pointer',
           transition: 'all 0.25s ease'
         }}
       >
-        {theme === 'light' ? <Moon size={18} color="#C084FC" /> : <Sun size={18} color="#F59E0B" />}
+        {theme === 'light' ? <Moon size={16} color="#C084FC" /> : <Sun size={16} color="#F59E0B" />}
         <span>{theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}</span>
       </button>
 
@@ -136,7 +143,7 @@ const MainContent = () => {
 
       <main style={{ flex: 1 }}>
         
-        {/* Hero Banner with Spin-to-Win Trigger */}
+        {/* Hero Banner */}
         <HeroBanner />
 
         {/* SECTION 1: Flash Sales (20 Dedicated Unique Items) */}
@@ -221,9 +228,39 @@ const MainContent = () => {
           </div>
         </section>
 
+        {/* SECTION 9: TARIFF BUYER PROTECTION TRUST BANNER */}
+        <section style={{ background: 'var(--bg-section-alt)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)', padding: '3.5rem 0' }}>
+          <div className="container" style={{ textAlign: 'center', maxWidth: '800px' }}>
+            <div style={{ background: 'var(--secondary-light)', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem', color: 'var(--secondary)' }}>
+              <ShieldCheck size={32} />
+            </div>
+            <span style={{ color: 'var(--secondary)', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              100% ESCROW SAFEGUARD
+            </span>
+            <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'var(--text-main)', marginTop: '0.35rem' }}>
+              TARIFF BUYER PROTECTION GUARANTEE
+            </h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginTop: '0.5rem', lineHeight: 1.6 }}>
+              Your payment is held 100% safe in Tariff Escrow until your order is delivered, inspected & verified. 
+              Enjoy 7-day money-back refunds, zero customs tax surprises, and instant dispute resolution.
+            </p>
+
+            <button 
+              onClick={() => setBuyerProtectionModal(true)}
+              className="btn-checkout"
+              style={{ display: 'inline-flex', width: 'auto', padding: '0.75rem 2rem', marginTop: '1.5rem' }}
+            >
+              Learn More About Tariff Escrow Guarantee
+            </button>
+          </div>
+        </section>
+
       </main>
 
       <Footer />
+
+      {/* Sticky Mobile Bottom Navigation */}
+      <MobileBottomNav />
 
       {/* Interactive Modals */}
       <ProductModal />
@@ -233,6 +270,9 @@ const MainContent = () => {
       <OrderSuccessModal />
       <TariffCalculatorModal />
       <UserProfileModal />
+      <SellerStorefrontModal />
+      <BuyerProtectionModal />
+      <NotificationCenterModal />
 
     </div>
   );

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useShop } from '../context/ShopContext';
-import { Search, ShoppingBag, Heart, ShieldCheck, Zap, Globe, Sparkles, Sun, Moon, User } from 'lucide-react';
+import { SearchAutocomplete } from './SearchAutocomplete';
+import { ShoppingBag, Heart, ShieldCheck, Zap, Globe, Sparkles, Sun, Moon, Bell, Store } from 'lucide-react';
 
 export const Header = () => {
   const { 
     cart, 
     wishlist, 
-    searchQuery, 
-    setSearchQuery, 
     setCartOpen, 
     currency, 
     setSpinWheelOpen,
@@ -16,8 +15,11 @@ export const Header = () => {
     setProfileOpen,
     theme,
     toggleTheme,
-    addToast,
-    products
+    unreadNotificationsCount,
+    setNotificationCenterOpen,
+    setBuyerProtectionModal,
+    selectedState,
+    setSelectedState
   } = useShop();
 
   const [headerHidden, setHeaderHidden] = useState(false);
@@ -38,28 +40,6 @@ export const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [prevScrollY]);
 
-  // Active search execution handler
-  const handleExecuteSearch = (e) => {
-    if (e) e.preventDefault();
-    const query = searchQuery.trim();
-    if (!query) {
-      addToast('Please enter a search term (e.g. iPhone, Air Fryer, Sneakers)', 'warning');
-      return;
-    }
-
-    const matches = products.filter(p => 
-      p.title.toLowerCase().includes(query.toLowerCase()) || 
-      p.category.toLowerCase().includes(query.toLowerCase())
-    );
-
-    addToast(`Searching for "${query}" — Found ${matches.length} products!`, 'success');
-
-    const catalogElement = document.getElementById('products-grid');
-    if (catalogElement) {
-      catalogElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
@@ -69,6 +49,12 @@ export const Header = () => {
         <div className="top-ticker-content">
           <Zap size={15} className="animate-pulse-glow" />
           <span>⚡ FLASH SALE: Up to 80% OFF Verified Factory Deals + 100% Tax Pre-Cleared Delivery!</span>
+          
+          <button onClick={() => setBuyerProtectionModal(true)} className="top-ticker-link" style={{ textDecoration: 'none' }}>
+            <ShieldCheck size={13} style={{ display: 'inline', marginRight: '3px' }} />
+            Tariff Escrow Protection ✓
+          </button>
+
           <button onClick={() => setSpinWheelOpen(true)} className="top-ticker-link">
             Spin Wheel for ₦15,000 Voucher 🎁
           </button>
@@ -88,23 +74,26 @@ export const Header = () => {
             <span className="logo-tag">MALL</span>
           </a>
 
-          {/* Search Omnibox Form */}
-          <form className="search-container" onSubmit={handleExecuteSearch}>
-            <div className="search-input-wrap">
-              <Search size={18} color="var(--text-muted)" style={{ marginRight: '8px' }} />
-              <input
-                type="text"
-                className="search-input"
-                placeholder="Search iPhone 15, Samsung S24, Air Fryer, Sneakers, Laptops..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <button type="submit" className="search-btn" title="Click to search catalog">
-                <Search size={16} />
-                <span>Search</span>
-              </button>
-            </div>
-          </form>
+          {/* Location State Selector (Lagos, Abuja, Port Harcourt) */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'var(--bg-section-alt)', padding: '0.35rem 0.75rem', borderRadius: '20px', fontSize: '0.78rem', fontWeight: 700, border: '1px solid var(--border-color)' }}>
+            <span style={{ color: 'var(--text-muted)' }}>Deliver to:</span>
+            <select 
+              value={selectedState} 
+              onChange={(e) => setSelectedState(e.target.value)}
+              style={{ background: 'transparent', border: 'none', color: 'var(--secondary)', fontWeight: 800, fontSize: '0.78rem', outline: 'none', cursor: 'pointer' }}
+            >
+              <option value="Lagos">Lagos State (1-2 Days)</option>
+              <option value="Abuja">Abuja FCT (2-4 Days)</option>
+              <option value="Ibadan">Ibadan (1-3 Days)</option>
+              <option value="Port Harcourt">Port Harcourt (2-4 Days)</option>
+              <option value="Kano">Kano (3-5 Days)</option>
+              <option value="Enugu">Enugu (2-4 Days)</option>
+              <option value="Other States">Nationwide (3-5 Days)</option>
+            </select>
+          </div>
+
+          {/* Search Omnibox with Autocomplete & Recent Searches */}
+          <SearchAutocomplete />
 
           {/* Right Header Actions */}
           <div className="header-actions">
@@ -125,7 +114,22 @@ export const Header = () => {
               }}
             >
               {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-              <span style={{ fontSize: '0.78rem' }}>{theme === 'light' ? 'Dark' : 'Light'} Mode</span>
+              <span style={{ fontSize: '0.78rem' }}>{theme === 'light' ? 'Dark' : 'Light'}</span>
+            </button>
+
+            {/* Notification Center Bell 🔔 */}
+            <button 
+              className="action-btn"
+              onClick={() => setNotificationCenterOpen(true)}
+              title="Notification Center & Alerts"
+            >
+              <Bell size={20} />
+              <span>Alerts</span>
+              {unreadNotificationsCount > 0 && (
+                <span className="action-badge" style={{ background: '#DC2626' }}>
+                  {unreadNotificationsCount}
+                </span>
+              )}
             </button>
 
             {/* Currency & Duty Selector */}
@@ -138,16 +142,6 @@ export const Header = () => {
               <span>{currency.code}</span>
               <Globe size={13} style={{ opacity: 0.7 }} />
             </div>
-
-            {/* Spin Wheel Quick Button */}
-            <button 
-              className="action-btn" 
-              onClick={() => setSpinWheelOpen(true)}
-              title="Spin Wheel of Savings"
-            >
-              <Sparkles size={20} color="var(--accent-gold)" />
-              <span>Spin & Win</span>
-            </button>
 
             {/* Profile Dashboard Button */}
             <button 
@@ -167,17 +161,8 @@ export const Header = () => {
                   style={{ width: '24px', height: '24px', borderRadius: '50%', border: '2px solid var(--primary)', objectFit: 'cover' }} 
                 />
               </div>
-              <span>Profile Dashboard</span>
+              <span>Profile</span>
               <span className="action-badge" style={{ background: 'var(--accent-gold)', fontSize: '0.55rem' }}>VIP</span>
-            </button>
-
-            {/* Wishlist */}
-            <button className="action-btn" onClick={() => setProfileOpen(true)} title="Saved Wishlist Items">
-              <Heart size={20} />
-              <span>Wishlist</span>
-              {wishlist.length > 0 && (
-                <span className="action-badge">{wishlist.length}</span>
-              )}
             </button>
 
             {/* Cart Drawer Trigger */}

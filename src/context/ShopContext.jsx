@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { masterProductsList, promoCodes } from '../data/products';
+import { masterProductsList, promoCodes, sellersDirectory, nigerianDeliveryRates } from '../data/products';
 import confetti from 'canvas-confetti';
 
 const ShopContext = createContext();
@@ -22,6 +22,31 @@ export const ShopProvider = ({ children }) => {
   const [currency, setCurrency] = useState(currencies[0]); // Default NGN ₦
   const [activePromo, setActivePromo] = useState(null);
 
+  // Selected State for Delivery Calculation (Lagos, Abuja, Port Harcourt, etc.)
+  const [selectedState, setSelectedState] = useState('Lagos');
+
+  // Recent Searches History
+  const [recentSearches, setRecentSearches] = useState(() => {
+    const saved = localStorage.getItem('tariff_recent_searches');
+    return saved ? JSON.parse(saved) : ['iPhone 15 Pro', 'Air Fryer Ninja', 'Nike Sneakers', 'MacBook Air M3'];
+  });
+
+  const addRecentSearch = (term) => {
+    if (!term || !term.trim()) return;
+    const clean = term.trim();
+    setRecentSearches(prev => {
+      const filtered = prev.filter(s => s.toLowerCase() !== clean.toLowerCase());
+      const updated = [clean, ...filtered].slice(0, 6);
+      localStorage.setItem('tariff_recent_searches', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const clearRecentSearches = () => {
+    setRecentSearches([]);
+    localStorage.removeItem('tariff_recent_searches');
+  };
+
   // Light / Dark Theme State with LocalStorage Persistence
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('tariff_theme') || 'light';
@@ -36,11 +61,24 @@ export const ShopProvider = ({ children }) => {
     setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
   };
 
+  // Notification Center State 🔔
+  const [notifications, setNotifications] = useState([
+    { id: 'notif-1', title: '🚚 Order In Transit', message: 'Order #TRF-984210 (iPhone 15 Pro) cleared Lagos Customs Hub.', time: '10 mins ago', read: false },
+    { id: 'notif-2', title: '🔔 Price Drop Alert', message: 'Samsung S24 Ultra dropped by ₦270,000 in your wishlist!', time: '1 hour ago', read: false },
+    { id: 'notif-3', title: '🔥 Flash Deal Live', message: 'AirPods Pro 2 USB-C 18% OFF Flash Sale ends in 4 hours.', time: '3 hours ago', read: true }
+  ]);
+
+  const markNotificationRead = (id) => {
+    setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
+  };
+
+  const unreadNotificationsCount = notifications.filter(n => !n.read).length;
+
   // Filter & Sort state
   const [sortBy, setSortBy] = useState('popular');
   const [priceFilterMax, setPriceFilterMax] = useState(2000000);
 
-  // User Profile State
+  // User Profile State with Tariff Wallet Balance 💳
   const [userProfile, setUserProfile] = useState({
     name: 'Jade Sophia',
     email: 'jadesophia600@gmail.com',
@@ -48,6 +86,7 @@ export const ShopProvider = ({ children }) => {
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
     vipTier: 'Tariff Gold Member',
     points: 14500,
+    walletBalanceNGN: 45000, // Tariff Wallet Escrow Balance
     savedTaxId: 'NG-88941-TRF',
     addresses: [
       { id: 'addr-1', label: 'Home Address', street: '14 Admiralty Way, Lekki Phase 1', city: 'Lagos', country: 'Nigeria', default: true },
@@ -60,7 +99,7 @@ export const ShopProvider = ({ children }) => {
       orderId: 'TRF-984210',
       date: 'Aug 08, 2026',
       total: 1450000,
-      status: 'In Transit — Customs Pre-Cleared',
+      status: 'In Transit — Pre-Cleared at Customs',
       itemsCount: 1,
       trackingNumber: 'TRF-EXP-889412',
       items: [
@@ -88,6 +127,9 @@ export const ShopProvider = ({ children }) => {
   const [tariffCalculatorOpen, setTariffCalculatorOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [notificationCenterOpen, setNotificationCenterOpen] = useState(false);
+  const [sellerStoreModal, setSellerStoreModal] = useState(null);
+  const [buyerProtectionModal, setBuyerProtectionModal] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(null);
   const [toasts, setToasts] = useState([]);
 
@@ -192,7 +234,8 @@ export const ShopProvider = ({ children }) => {
     }
   }
 
-  const shippingCost = rawSubtotal >= 50000 || cart.length === 0 ? 0 : 3500;
+  const deliveryInfo = nigerianDeliveryRates[selectedState] || nigerianDeliveryRates['Lagos'];
+  const shippingCost = rawSubtotal >= 50000 || cart.length === 0 ? 0 : deliveryInfo.fee;
   const finalTotal = Math.max(0, rawSubtotal - discountAmount + totalTariffDuty + shippingCost);
 
   const triggerWheelReward = () => {
@@ -233,6 +276,11 @@ export const ShopProvider = ({ children }) => {
   const updateUserProfile = (newDetails) => {
     setUserProfile(prev => ({ ...prev, ...newDetails }));
     addToast('User profile updated successfully!', 'success');
+  };
+
+  const openSellerStore = (sellerName) => {
+    const sellerData = sellersDirectory[sellerName] || sellersDirectory['Slot Electronics'];
+    setSellerStoreModal(sellerData);
   };
 
   return (
@@ -286,7 +334,23 @@ export const ShopProvider = ({ children }) => {
       priceFilterMax,
       setPriceFilterMax,
       theme,
-      toggleTheme
+      toggleTheme,
+      recentSearches,
+      addRecentSearch,
+      clearRecentSearches,
+      selectedState,
+      setSelectedState,
+      deliveryInfo,
+      notifications,
+      markNotificationRead,
+      unreadNotificationsCount,
+      notificationCenterOpen,
+      setNotificationCenterOpen,
+      sellerStoreModal,
+      setSellerStoreModal,
+      openSellerStore,
+      buyerProtectionModal,
+      setBuyerProtectionModal
     }}>
       {children}
     </ShopContext.Provider>
