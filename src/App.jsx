@@ -38,13 +38,13 @@ import './styles/animations.css';
 
 const MainContent = () => {
   const { 
-    products, 
-    selectedCategory, 
-    searchQuery, 
-    toasts, 
-    sortBy, 
-    priceFilterMax,
-    theme,
+    products = [], 
+    selectedCategory = 'all', 
+    searchQuery = '', 
+    toasts = [], 
+    sortBy = 'popular', 
+    priceFilterMax = 2000000,
+    theme = 'light',
     toggleTheme,
     setBuyerProtectionModal
   } = useShop();
@@ -52,49 +52,54 @@ const MainContent = () => {
   // --- PROGRAMMATIC PRODUCT DEDUPLICATION ENGINE (20 ITEMS PER SECTION) ---
   
   // 1. Flash Deals (20 Items)
-  const flashProducts = products.filter(p => p.isFlashSale || p.sectionTag === 'flashDeals').slice(0, 20);
+  const flashProducts = (products || []).filter(p => p && (p.isFlashSale || p.sectionTag === 'flashDeals')).slice(0, 20);
   const flashIds = new Set(flashProducts.map(p => p.id));
 
   // 2. Best Sellers (20 Items deduplicated against Flash)
-  const bestSellersProducts = products
-    .filter(p => !flashIds.has(p.id) && (p.sectionTag === 'bestSellers' || p.reviewsCount > 2000))
+  const bestSellersProducts = (products || [])
+    .filter(p => p && !flashIds.has(p.id) && (p.sectionTag === 'bestSellers' || (p.reviewsCount || 0) > 2000))
     .slice(0, 20);
   const bestSellerIds = new Set(bestSellersProducts.map(p => p.id));
 
   // 3. Trending Now (20 Items deduplicated against Flash & Best Sellers)
-  const trendingProducts = products
-    .filter(p => !flashIds.has(p.id) && !bestSellerIds.has(p.id) && (p.sectionTag === 'trending' || p.rating >= 4.8))
+  const trendingProducts = (products || [])
+    .filter(p => p && !flashIds.has(p.id) && !bestSellerIds.has(p.id) && (p.sectionTag === 'trending' || (p.rating || 0) >= 4.8))
     .slice(0, 20);
   const trendingIds = new Set(trendingProducts.map(p => p.id));
 
   // 4. New Arrivals (20 Items deduplicated against prior sections)
-  const newArrivalsProducts = products
-    .filter(p => !flashIds.has(p.id) && !bestSellerIds.has(p.id) && !trendingIds.has(p.id) && (p.sectionTag === 'newArrivals' || p.id.startsWith('ph-5') || p.id.startsWith('lap-4')))
+  const newArrivalsProducts = (products || [])
+    .filter(p => p && !flashIds.has(p.id) && !bestSellerIds.has(p.id) && !trendingIds.has(p.id) && (p.sectionTag === 'newArrivals' || (p.id && (p.id.startsWith('ph-5') || p.id.startsWith('lap-4')))))
     .slice(0, 20);
   const newArrivalIds = new Set(newArrivalsProducts.map(p => p.id));
 
   // 5. Verified Tariff Mall Stores (20 Items deduplicated)
-  const featuredStoreProducts = products
-    .filter(p => !flashIds.has(p.id) && !bestSellerIds.has(p.id) && !trendingIds.has(p.id) && !newArrivalIds.has(p.id))
+  const featuredStoreProducts = (products || [])
+    .filter(p => p && !flashIds.has(p.id) && !bestSellerIds.has(p.id) && !trendingIds.has(p.id) && !newArrivalIds.has(p.id))
     .slice(0, 20);
 
   // --- Filtered Catalog for Recommended For You & Category Selection ---
-  const filteredProducts = products.filter((product) => {
-    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
-    const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          (product.seller && product.seller.toLowerCase().includes(searchQuery.toLowerCase()));
-    const matchesPrice = product.priceNGN <= priceFilterMax;
+  const filteredProducts = (products || []).filter((product) => {
+    if (!product) return false;
+    const cat = product.category || '';
+    const matchesCategory = selectedCategory === 'all' || cat === selectedCategory;
+    const title = product.title || '';
+    const seller = product.seller || '';
+    const query = (searchQuery || '').toLowerCase();
+    const matchesSearch = title.toLowerCase().includes(query) ||
+                          cat.toLowerCase().includes(query) ||
+                          seller.toLowerCase().includes(query);
+    const matchesPrice = (product.priceNGN || 0) <= priceFilterMax;
     return matchesCategory && matchesSearch && matchesPrice;
   });
 
   // Sort products based on selected sort option
   const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === 'discount') return b.discountPercent - a.discountPercent;
-    if (sortBy === 'price-low') return a.priceNGN - b.priceNGN;
-    if (sortBy === 'price-high') return b.priceNGN - a.priceNGN;
-    if (sortBy === 'rating') return b.rating - a.rating;
-    return b.reviewsCount - a.reviewsCount; // default popular
+    if (sortBy === 'discount') return (b.discountPercent || 0) - (a.discountPercent || 0);
+    if (sortBy === 'price-low') return (a.priceNGN || 0) - (b.priceNGN || 0);
+    if (sortBy === 'price-high') return (b.priceNGN || 0) - (a.priceNGN || 0);
+    if (sortBy === 'rating') return (b.rating || 0) - (a.rating || 0);
+    return (b.reviewsCount || 0) - (a.reviewsCount || 0); // default popular
   });
 
   return (
