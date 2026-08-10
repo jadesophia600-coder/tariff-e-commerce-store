@@ -1,7 +1,7 @@
 import React from 'react';
 import { useShop } from '../context/ShopContext';
 import { fallbackProductImage } from '../data/products';
-import { Star, Heart, ShoppingBag, ShieldCheck, Eye } from 'lucide-react';
+import { Star, Heart, ShoppingBag, ShieldCheck, Eye, Store } from 'lucide-react';
 
 export const ProductCard = ({ product }) => {
   const { 
@@ -18,7 +18,7 @@ export const ProductCard = ({ product }) => {
   return (
     <div className="product-card">
       
-      {/* Product Top Image & Badges */}
+      {/* Product Image & Badges Container */}
       <div className="product-image-container">
         
         <span className="badge-flash product-discount-badge">
@@ -49,18 +49,24 @@ export const ProductCard = ({ product }) => {
         />
       </div>
 
-      {/* Product Content Body */}
+      {/* Product Details Body */}
       <div className="product-body">
         
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2px' }}>
           <span className="product-category-text">{product.category}</span>
           <button 
             onClick={() => setProductModal(product)} 
-            style={{ color: '#9CA3AF', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem' }}
+            style={{ color: '#64748B', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.725rem', fontWeight: 600 }}
           >
-            <Eye size={13} />
+            <Eye size={12} />
             <span>Quick View</span>
           </button>
+        </div>
+
+        {/* Seller Info Badge */}
+        <div className="product-seller-text" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <Store size={12} color="#059669" />
+          <span>{product.seller || 'Tariff Official Store ✓'}</span>
         </div>
 
         <h3 
@@ -71,33 +77,33 @@ export const ProductCard = ({ product }) => {
           {product.title}
         </h3>
 
-        {/* Rating Row */}
+        {/* Rating & Reviews */}
         <div className="product-rating-row">
           <div style={{ display: 'flex', gap: '2px' }}>
             {[...Array(5)].map((_, i) => (
               <Star 
                 key={i} 
                 size={13} 
-                fill={i < Math.floor(product.rating) ? "#F59E0B" : "none"} 
-                color="#F59E0B" 
+                fill={i < Math.floor(product.rating) ? "#D97706" : "none"} 
+                color="#D97706" 
               />
             ))}
           </div>
-          <span style={{ fontWeight: 700, color: '#fff' }}>{product.rating}</span>
+          <span style={{ fontWeight: 800, color: '#0F172A' }}>{product.rating}</span>
           <span className="rating-count">({product.reviewsCount.toLocaleString()})</span>
         </div>
 
-        {/* Tariff Pre-Cleared Guarantee Pill */}
+        {/* Tariff Duty Guarantee Pill */}
         <div className="product-tariff-guarantee">
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <ShieldCheck size={14} color="#10B981" />
+            <ShieldCheck size={14} color="#059669" />
             <span>
-              {product.tariffDutyAmount === 0 ? "DUTY FREE PROMO" : `Tariff Duty Included ($${product.tariffDutyAmount.toFixed(2)})`}
+              {product.tariffDutyAmountNGN === 0 ? "100% Tax Pre-Paid ✓" : `Customs Duty Pre-Paid`}
             </span>
           </div>
         </div>
 
-        {/* Stock Level Bar (Temu Style) */}
+        {/* Stock Progress Bar (Flash Sales) */}
         {product.isFlashSale && (
           <div className="stock-bar-wrap">
             <div className="stock-bar-bg">
@@ -107,11 +113,11 @@ export const ProductCard = ({ product }) => {
           </div>
         )}
 
-        {/* Pricing & Add to Cart Action */}
+        {/* Price & Action Row */}
         <div className="product-price-row">
           <div>
-            <span className="price-main">{formatPrice(product.price)}</span>
-            <span className="price-old">{formatPrice(product.originalPrice)}</span>
+            <span className="price-main">{formatPrice(product.priceNGN)}</span>
+            <span className="price-old">{formatPrice(product.originalPriceNGN)}</span>
           </div>
 
           <button 

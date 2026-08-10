@@ -1,121 +1,117 @@
 import React from 'react';
-import { Zap, ShieldCheck, Truck, RotateCcw, Headphones, Lock } from 'lucide-react';
+import { ShieldCheck, Truck, RotateCcw, Headset, Zap } from 'lucide-react';
 
 export const Footer = () => {
   return (
     <footer className="main-footer">
       <div className="container">
         
-        {/* Value Props Row */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '3rem', paddingBottom: '2.5rem', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-            <div style={{ background: 'rgba(124, 58, 237, 0.15)', padding: '12px', borderRadius: '12px', color: '#7C3AED' }}>
-              <Truck size={24} />
+        {/* Value Proposition Badges */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem', paddingBottom: '3rem', borderBottom: '1px solid #1E293B', marginBottom: '3rem' }}>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div style={{ background: 'rgba(5, 150, 105, 0.15)', padding: '12px', borderRadius: '12px', color: '#10B981' }}>
+              <ShieldCheck size={26} />
             </div>
             <div>
-              <h4 style={{ color: '#fff', fontSize: '0.95rem', margin: 0 }}>Express Global Shipping</h4>
-              <p style={{ color: '#9CA3AF', fontSize: '0.8rem', margin: 0 }}>Free delivery on orders over $35</p>
+              <h4 style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 800 }}>100% Tax Pre-Cleared</h4>
+              <p style={{ color: '#94A3B8', fontSize: '0.8rem' }}>Zero hidden customs duty on delivery</p>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-            <div style={{ background: 'rgba(16, 185, 129, 0.15)', padding: '12px', borderRadius: '12px', color: '#10B981' }}>
-              <ShieldCheck size={24} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div style={{ background: 'rgba(124, 58, 237, 0.15)', padding: '12px', borderRadius: '12px', color: '#C084FC' }}>
+              <Truck size={26} />
             </div>
             <div>
-              <h4 style={{ color: '#fff', fontSize: '0.95rem', margin: 0 }}>100% Tax Pre-Cleared</h4>
-              <p style={{ color: '#9CA3AF', fontSize: '0.8rem', margin: 0 }}>No hidden customs duty charges</p>
+              <h4 style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 800 }}>Express Nationwide Logistics</h4>
+              <p style={{ color: '#94A3B8', fontSize: '0.8rem' }}>2-4 Days delivery across Nigeria</p>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-            <div style={{ background: 'rgba(245, 158, 11, 0.15)', padding: '12px', borderRadius: '12px', color: '#F59E0B' }}>
-              <RotateCcw size={24} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div style={{ background: 'rgba(217, 119, 6, 0.15)', padding: '12px', borderRadius: '12px', color: '#FBBF24' }}>
+              <RotateCcw size={26} />
             </div>
             <div>
-              <h4 style={{ color: '#fff', fontSize: '0.95rem', margin: 0 }}>90-Day Free Returns</h4>
-              <p style={{ color: '#9CA3AF', fontSize: '0.8rem', margin: 0 }}>Hassle-free buyer protection</p>
+              <h4 style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 800 }}>7 Days Easy Returns</h4>
+              <p style={{ color: '#94A3B8', fontSize: '0.8rem' }}>Full money-back buyer protection</p>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-            <div style={{ background: 'rgba(6, 182, 212, 0.15)', padding: '12px', borderRadius: '12px', color: '#06B6D4' }}>
-              <Headphones size={24} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div style={{ background: 'rgba(2, 132, 199, 0.15)', padding: '12px', borderRadius: '12px', color: '#38BDF8' }}>
+              <Headset size={26} />
             </div>
             <div>
-              <h4 style={{ color: '#fff', fontSize: '0.95rem', margin: 0 }}>24/7 Priority Support</h4>
-              <p style={{ color: '#9CA3AF', fontSize: '0.8rem', margin: 0 }}>Live chat & ticket support</p>
+              <h4 style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 800 }}>24/7 Dedicated Support</h4>
+              <p style={{ color: '#94A3B8', fontSize: '0.8rem' }}>Live chat & phone order tracking</p>
             </div>
           </div>
+
         </div>
 
         {/* Footer Navigation Columns */}
         <div className="footer-grid">
           
-          <div>
-            <div className="logo-brand" style={{ marginBottom: '1rem' }}>
-              <div className="logo-icon-wrap">
-                <Zap size={22} fill="#fff" />
+          <div className="footer-col">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+              <div style={{ background: 'var(--primary)', width: '32px', height: '32px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
+                <Zap size={20} fill="#fff" />
               </div>
-              <span>TARIFF</span>
+              <span style={{ fontSize: '1.5rem', fontWeight: 900, color: '#fff' }}>TARIFF MALL</span>
             </div>
-            <p style={{ color: '#9CA3AF', fontSize: '0.875rem', lineHeight: '1.6', marginBottom: '1.25rem' }}>
-              Tariff Direct connects global shoppers straight to manufacturer factories. Ultra-discounted flash sales, daily price slashes, and 100% transparent customs clearance.
+            <p style={{ color: '#94A3B8', fontSize: '0.875rem', lineHeight: 1.6, maxWidth: '320px' }}>
+              Nigeria's premier factory-direct e-commerce marketplace with pre-cleared customs duties, transparent pricing, and guaranteed genuine brand hub items.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#10B981', fontSize: '0.85rem', fontWeight: 600 }}>
-              <Lock size={16} />
-              <span>256-Bit SSL Encrypted & Verisign Secured</span>
-            </div>
           </div>
 
           <div className="footer-col">
-            <h4>Shop Blitz Categories</h4>
+            <h4>Popular Departments</h4>
             <ul className="footer-links">
-              <li><a href="#">Tech & Electronics</a></li>
-              <li><a href="#">Smart Wearables</a></li>
-              <li><a href="#">Street & Urban Fashion</a></li>
-              <li><a href="#">Pro Audio & Gaming</a></li>
-              <li><a href="#">Smart Home Essentials</a></li>
+              <li><a href="#products-grid">Phones & Tablets</a></li>
+              <li><a href="#products-grid">Laptops & Computers</a></li>
+              <li><a href="#products-grid">Fashion & Sneakers</a></li>
+              <li><a href="#products-grid">Home & Kitchen Appliances</a></li>
+              <li><a href="#products-grid">Audio & Electronics</a></li>
+              <li><a href="#products-grid">Beauty & Skincare</a></li>
             </ul>
           </div>
 
           <div className="footer-col">
-            <h4>Customer Care</h4>
+            <h4>Customer Support</h4>
             <ul className="footer-links">
-              <li><a href="#">Track Order Shipment</a></li>
-              <li><a href="#">Tariff Pre-Clearance Policy</a></li>
-              <li><a href="#">Return & Refund Center</a></li>
-              <li><a href="#">Spin Wheel Terms</a></li>
-              <li><a href="#">Help & FAQs</a></li>
+              <li><a href="#">Tariff Pre-Cleared Guarantee</a></li>
+              <li><a href="#">Order Tracking & Logistics</a></li>
+              <li><a href="#">Customs Duty Calculator</a></li>
+              <li><a href="#">Return & Refund Policy</a></li>
+              <li><a href="#">Verified Seller Center</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
             </ul>
           </div>
 
           <div className="footer-col">
             <h4>Tariff VIP Club</h4>
-            <p style={{ color: '#9CA3AF', fontSize: '0.85rem', marginBottom: '0.85rem' }}>
-              Subscribe to get secret 90% OFF flash drop alerts!
-            </p>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                style={{ flex: 1, background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '0.5rem 0.75rem', color: '#fff', fontSize: '0.8rem' }}
-              />
-              <button style={{ background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '8px', padding: '0 0.85rem', fontWeight: 700, fontSize: '0.8rem' }}>
-                Join
-              </button>
-            </div>
+            <ul className="footer-links">
+              <li><a href="#">Jade Sophia (VIP Gold Member)</a></li>
+              <li><a href="#">14,500 Tariff Loyalty Points</a></li>
+              <li><a href="#">Spin Wheel ₦15,000 Voucher</a></li>
+              <li><a href="#">Saved Address Book</a></li>
+              <li><a href="#">Download Tariff App</a></li>
+            </ul>
           </div>
 
         </div>
 
-        {/* Footer Bottom */}
+        {/* Footer Copyright */}
         <div className="footer-bottom">
-          <div>© 2026 Tariff Direct Inc. All rights reserved. Jumia & Temu Inspired Global Marketplace.</div>
-          <div style={{ display: 'flex', gap: '1.25rem' }}>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Customs Transparency</a>
+          <div>
+            © {new Date().getFullYear()} TARIFF MALL (NIGERIA) LTD. All Rights Reserved. Built with Transparent Customs Integration.
+          </div>
+
+          <div style={{ display: 'flex', gap: '1rem', color: '#94A3B8', fontSize: '0.8rem' }}>
+            <span>🔒 256-Bit SSL Encrypted Payment</span>
+            <span>✓ Verified by Slot, Apple & Samsung Hubs</span>
           </div>
         </div>
 

@@ -1,50 +1,43 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { mockProducts, promoCodes } from '../data/products';
+import { masterProductsList, promoCodes } from '../data/products';
 import confetti from 'canvas-confetti';
 
 const ShopContext = createContext();
 
 export const currencies = [
-  { code: 'USD', symbol: '$', rate: 1, name: 'USD - United States' },
-  { code: 'EUR', symbol: '€', rate: 0.92, name: 'EUR - Europe Union' },
-  { code: 'GBP', symbol: '£', rate: 0.79, name: 'GBP - United Kingdom' },
-  { code: 'NGN', symbol: '₦', rate: 1480, name: 'NGN - Nigeria (Jumia Hub)' },
-  { code: 'KES', symbol: 'KSh', rate: 130, name: 'KES - Kenya (Jumia Hub)' },
-  { code: 'ZAR', symbol: 'R', rate: 18.5, name: 'ZAR - South Africa' }
+  { code: 'NGN', symbol: '₦', rate: 1, name: 'NGN - Nigerian Naira (Default)' },
+  { code: 'USD', symbol: '$', rate: 0.00067, name: 'USD - United States Dollar' },
+  { code: 'EUR', symbol: '€', rate: 0.00062, name: 'EUR - Euro' },
+  { code: 'GBP', symbol: '£', rate: 0.00053, name: 'GBP - British Pound' },
+  { code: 'KES', symbol: 'KSh', rate: 0.087, name: 'KES - Kenyan Shilling' },
+  { code: 'ZAR', symbol: 'R', rate: 0.012, name: 'ZAR - South African Rand' }
 ];
 
 export const ShopProvider = ({ children }) => {
-  const [products] = useState(mockProducts);
+  const [products] = useState(masterProductsList);
   const [cart, setCart] = useState([]);
-  const [wishlist, setWishlist] = useState(['prod-wearables-1', 'prod-fashion-3']);
+  const [wishlist, setWishlist] = useState(['ph-1', 'fas-1']);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [currency, setCurrency] = useState(currencies[0]);
+  const [currency, setCurrency] = useState(currencies[0]); // Default NGN ₦
   const [activePromo, setActivePromo] = useState(null);
 
-  // Pagination & Sorting Controls
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 24;
-  const [sortBy, setSortBy] = useState('popular'); // 'popular', 'price-low', 'price-high', 'discount'
-  const [priceFilterMax, setPriceFilterMax] = useState(400);
-
-  // Reset pagination when category, search, or filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedCategory, searchQuery, sortBy, priceFilterMax]);
+  // Filter & Sort state
+  const [sortBy, setSortBy] = useState('popular');
+  const [priceFilterMax, setPriceFilterMax] = useState(2000000);
 
   // User Profile State
   const [userProfile, setUserProfile] = useState({
     name: 'Jade Sophia',
     email: 'jadesophia600@gmail.com',
-    phone: '+1 (555) 019-2834',
+    phone: '+234 812 345 6789',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-    vipTier: 'Tariff VIP Gold Member',
-    points: 1450,
-    savedTaxId: 'TX-9874-TRF',
+    vipTier: 'Tariff Gold Member',
+    points: 14500,
+    savedTaxId: 'NG-88941-TRF',
     addresses: [
-      { id: 'addr-1', label: 'Primary Residence', street: '742 Evergreen Terrace', city: 'Springfield', country: 'United States', default: true },
-      { id: 'addr-2', label: 'Office Studio', street: '100 Cyberpunk Way, Suite 400', city: 'Neo Tokyo', country: 'Japan', default: false }
+      { id: 'addr-1', label: 'Home Address', street: '14 Admiralty Way, Lekki Phase 1', city: 'Lagos', country: 'Nigeria', default: true },
+      { id: 'addr-2', label: 'Office Studio', street: '45 Allen Avenue, Ikeja', city: 'Lagos', country: 'Nigeria', default: false }
     ]
   });
 
@@ -52,24 +45,23 @@ export const ShopProvider = ({ children }) => {
     {
       orderId: 'TRF-984210',
       date: 'Aug 08, 2026',
-      total: 89.49,
+      total: 1450000,
       status: 'In Transit — Customs Pre-Cleared',
-      itemsCount: 2,
+      itemsCount: 1,
       trackingNumber: 'TRF-EXP-889412',
       items: [
-        { title: 'Tariff CyberPulse OLED Smartwatch Ultra 100 Series', price: 39.99, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80' },
-        { title: 'Tariff Pods Ultra ANC Earbuds 107 Series', price: 19.99, image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80' }
+        { title: 'Apple iPhone 15 Pro Max (256GB, Natural Titanium)', price: 1450000, image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80' }
       ]
     },
     {
       orderId: 'TRF-774102',
       date: 'Jul 24, 2026',
-      total: 54.99,
+      total: 68000,
       status: 'Delivered',
       itemsCount: 1,
       trackingNumber: 'TRF-EXP-554109',
       items: [
-        { title: 'Tariff CyberStrider Smart LED Sneakers 114 Series', price: 54.99, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80' }
+        { title: 'Nike Air Max 270 React Running Sneakers', price: 68000, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80' }
       ]
     }
   ]);
@@ -85,7 +77,7 @@ export const ShopProvider = ({ children }) => {
   const [orderSuccess, setOrderSuccess] = useState(null);
   const [toasts, setToasts] = useState([]);
 
-  // Countdown timer
+  // Countdown timer for Flash Deals
   const [timeLeft, setTimeLeft] = useState({ hours: 4, minutes: 28, seconds: 45 });
 
   useEffect(() => {
@@ -123,7 +115,7 @@ export const ShopProvider = ({ children }) => {
         selectedSize: size || product.sizes?.[0] 
       }];
     });
-    addToast(`Added "${product.title}" to Cart!`, 'success');
+    addToast(`Added "${product.title}" to Tariff Cart!`, 'success');
   };
 
   const removeFromCart = (productId) => {
@@ -163,16 +155,19 @@ export const ShopProvider = ({ children }) => {
     }
   };
 
-  const formatPrice = (priceInUSD) => {
-    const converted = priceInUSD * currency.rate;
-    if (currency.code === 'NGN' || currency.code === 'KES') {
-      return `${currency.symbol}${Math.round(converted).toLocaleString()}`;
+  // Price Formatter supporting ₦ NGN Naira and conversions
+  const formatPrice = (priceInNGN) => {
+    const converted = priceInNGN * currency.rate;
+    if (currency.code === 'NGN') {
+      return `₦${Math.round(converted).toLocaleString()}`;
+    } else if (currency.code === 'USD' || currency.code === 'EUR' || currency.code === 'GBP') {
+      return `${currency.symbol}${converted.toFixed(2)}`;
     }
-    return `${currency.symbol}${converted.toFixed(2)}`;
+    return `${currency.symbol}${Math.round(converted).toLocaleString()}`;
   };
 
-  const rawSubtotal = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
-  const totalTariffDuty = cart.reduce((sum, item) => sum + ((item.product.tariffDutyAmount || 0) * item.quantity), 0);
+  const rawSubtotal = cart.reduce((sum, item) => sum + (item.product.priceNGN * item.quantity), 0);
+  const totalTariffDuty = cart.reduce((sum, item) => sum + ((item.product.tariffDutyAmountNGN || 0) * item.quantity), 0);
   
   let discountAmount = 0;
   if (activePromo) {
@@ -183,7 +178,7 @@ export const ShopProvider = ({ children }) => {
     }
   }
 
-  const shippingCost = rawSubtotal > 35 || cart.length === 0 ? 0 : 4.99;
+  const shippingCost = rawSubtotal > 50000 || cart.length === 0 ? 0 : 3500;
   const finalTotal = Math.max(0, rawSubtotal - discountAmount + totalTariffDuty + shippingCost);
 
   const triggerWheelReward = () => {
@@ -205,12 +200,12 @@ export const ShopProvider = ({ children }) => {
       total: finalTotal,
       currency: currency,
       shippingInfo,
-      status: 'Processing — Customs Pre-Cleared'
+      status: 'Processing — Pre-Cleared at Customs'
     };
 
     setOrderSuccess(orderData);
     setUserOrders(prev => [orderData, ...prev]);
-    setUserProfile(prev => ({ ...prev, points: prev.points + Math.floor(finalTotal * 10) }));
+    setUserProfile(prev => ({ ...prev, points: prev.points + Math.floor(finalTotal / 100) }));
     setCart([]);
     setCheckoutOpen(false);
 
@@ -275,10 +270,7 @@ export const ShopProvider = ({ children }) => {
       sortBy,
       setSortBy,
       priceFilterMax,
-      setPriceFilterMax,
-      currentPage,
-      setCurrentPage,
-      itemsPerPage
+      setPriceFilterMax
     }}>
       {children}
     </ShopContext.Provider>

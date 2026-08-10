@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useShop } from '../context/ShopContext';
 import { fallbackProductImage } from '../data/products';
-import { X, Star, ShieldCheck, Truck, ShoppingBag, Heart } from 'lucide-react';
+import { Star, ShieldCheck, ShoppingBag, Truck, Check, X, Store, Heart } from 'lucide-react';
 
 export const ProductModal = () => {
   const { 
@@ -9,21 +9,17 @@ export const ProductModal = () => {
     setProductModal, 
     formatPrice, 
     addToCart, 
-    toggleWishlist, 
-    wishlist 
+    wishlist, 
+    toggleWishlist 
   } = useShop();
 
   if (!productModal) return null;
-
-  const [selectedColor, setSelectedColor] = useState(productModal.colors?.[0] || '');
-  const [selectedSize, setSelectedSize] = useState(productModal.sizes?.[0] || '');
-  const [quantity, setQuantity] = useState(1);
 
   const isWishlisted = wishlist.includes(productModal.id);
 
   return (
     <div className="modal-overlay" onClick={() => setProductModal(null)}>
-      <div className="modal-content animate-pop-in" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '850px' }}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '850px' }}>
         
         <button className="close-modal-btn" onClick={() => setProductModal(null)}>
           <X size={20} />
@@ -31,129 +27,113 @@ export const ProductModal = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
           
-          {/* Product Media Column */}
-          <div>
-            <div style={{ width: '100%', height: '340px', background: '#060911', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <img 
-                src={productModal.image} 
-                alt={productModal.title} 
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = fallbackProductImage;
-                }}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            </div>
-
-            {/* Delivery Guarantee Badge */}
-            <div style={{ marginTop: '1.25rem', background: 'rgba(16, 185, 129, 0.08)', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '1rem', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <Truck size={24} color="#10B981" />
-              <div>
-                <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.9rem' }}>Guaranteed {productModal.guaranteedDeliveryDays} Delivery</div>
-                <div style={{ fontSize: '0.78rem', color: '#9CA3AF' }}>Fulfilled by Tariff Global Express Logistics</div>
-              </div>
-            </div>
+          {/* Left Column: Product Image */}
+          <div style={{ background: '#F8FAFC', borderRadius: '16px', padding: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #E2E8F0' }}>
+            <img 
+              src={productModal.image} 
+              alt={productModal.title}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = fallbackProductImage;
+              }}
+              style={{ maxWidth: '100%', maxHeight: '350px', objectFit: 'contain' }}
+            />
           </div>
 
-          {/* Product Info Column */}
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            
-            <span style={{ color: '#7C3AED', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase' }}>
-              {productModal.category}
-            </span>
+          {/* Right Column: Details & Order CTA */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+              <span className="badge-flash">-{productModal.discountPercent}% OFF</span>
+              <span style={{ color: '#059669', fontSize: '0.75rem', fontWeight: 700, background: '#ECFDF5', padding: '0.2rem 0.6rem', borderRadius: '20px' }}>
+                <Store size={12} style={{ display: 'inline', marginRight: '3px' }} />
+                {productModal.seller || 'Tariff Verified Merchant'}
+              </span>
+            </div>
 
-            <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', margin: '0.4rem 0 0.6rem 0', lineHeight: 1.25 }}>
+            <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0F172A', marginBottom: '0.75rem', lineHeight: 1.3 }}>
               {productModal.title}
             </h2>
 
-            {/* Ratings */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', fontSize: '0.85rem' }}>
-              <div style={{ display: 'flex', gap: '2px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', color: '#D97706' }}>
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={14} fill={i < Math.floor(productModal.rating) ? "#F59E0B" : "none"} color="#F59E0B" />
+                  <Star key={i} size={15} fill={i < Math.floor(productModal.rating) ? "#D97706" : "none"} />
                 ))}
               </div>
-              <span style={{ fontWeight: 700, color: '#fff' }}>{productModal.rating}</span>
-              <span style={{ color: '#9CA3AF' }}>({productModal.reviewsCount} verified reviews)</span>
+              <span style={{ fontWeight: 800, color: '#0F172A' }}>{productModal.rating}</span>
+              <span style={{ color: '#64748B', fontSize: '0.85rem' }}>({productModal.reviewsCount.toLocaleString()} Customer Reviews)</span>
             </div>
 
             {/* Price Box */}
-            <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', padding: '0.85rem 1.25rem', borderRadius: '12px', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <span style={{ fontSize: '2rem', fontWeight: 900, color: '#fff', fontFamily: 'var(--font-heading)' }}>
-                {formatPrice(productModal.price)}
-              </span>
-              <span style={{ fontSize: '1rem', color: '#9CA3AF', textDecoration: 'line-through' }}>
-                {formatPrice(productModal.originalPrice)}
-              </span>
-              <span className="badge-flash" style={{ marginLeft: 'auto' }}>
-                SAVE {productModal.discountPercent}%
-              </span>
-            </div>
-
-            {/* Transparent Tariff Duty Info */}
-            <div style={{ background: 'rgba(124, 58, 237, 0.1)', border: '1px dashed rgba(124, 58, 237, 0.4)', padding: '0.85rem', borderRadius: '12px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#A78BFA', fontWeight: 700, marginBottom: '0.35rem' }}>
-                <ShieldCheck size={18} />
-                <span>Tariff Customs Clearance Guarantee</span>
+            <div style={{ background: '#F8FAFC', padding: '1rem', borderRadius: '12px', border: '1px solid #E2E8F0', marginBottom: '1.25rem' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem' }}>
+                <span style={{ fontSize: '1.8rem', fontWeight: 900, color: '#059669', fontFamily: 'var(--font-heading)' }}>
+                  {formatPrice(productModal.priceNGN)}
+                </span>
+                <span style={{ fontSize: '1rem', color: '#94A3B8', textDecoration: 'line-through' }}>
+                  {formatPrice(productModal.originalPriceNGN)}
+                </span>
               </div>
-              <div style={{ color: '#9CA3AF', fontSize: '0.8rem' }}>
-                Base Price: {formatPrice(productModal.price)} | Pre-calculated Customs Fee: 
-                <strong style={{ color: '#10B981', marginLeft: '4px' }}>
-                  {productModal.tariffDutyAmount === 0 ? '$0.00 (Duty-Free Blitz)' : `$${productModal.tariffDutyAmount.toFixed(2)}`}
-                </strong>
+              
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#059669', fontSize: '0.825rem', fontWeight: 700, marginTop: '0.4rem' }}>
+                <ShieldCheck size={16} />
+                <span>Customs duty & VAT pre-cleared for Nigeria delivery</span>
               </div>
             </div>
 
-            {/* Description & Features */}
-            <p style={{ color: '#D1D5DB', fontSize: '0.875rem', marginBottom: '1rem' }}>
+            <p style={{ color: '#475569', fontSize: '0.9rem', marginBottom: '1.25rem', lineHeight: 1.5 }}>
               {productModal.description}
             </p>
 
-            {/* Variants */}
-            {productModal.colors && (
-              <div style={{ marginBottom: '1rem' }}>
-                <div style={{ fontSize: '0.8rem', color: '#9CA3AF', fontWeight: 600, marginBottom: '0.4rem' }}>SELECT COLOR:</div>
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  {productModal.colors.map(color => (
-                    <button
-                      key={color}
-                      onClick={() => setSelectedColor(color)}
-                      style={{
-                        width: '28px',
-                        height: '28px',
-                        borderRadius: '50%',
-                        background: color,
-                        border: selectedColor === color ? '3px solid #7C3AED' : '1px solid #4B5563',
-                        cursor: 'pointer',
-                        transform: selectedColor === color ? 'scale(1.15)' : 'scale(1)'
-                      }}
-                    />
+            {/* Key Feature Bullets */}
+            {productModal.features && (
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h4 style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: '#64748B', marginBottom: '0.5rem' }}>Key Highlights</h4>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
+                  {productModal.features.map((feat, idx) => (
+                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.825rem', color: '#0F172A', fontWeight: 600 }}>
+                      <Check size={14} color="#059669" />
+                      <span>{feat}</span>
+                    </div>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* Actions */}
-            <div style={{ display: 'flex', gap: '0.85rem', marginTop: 'auto' }}>
+            {/* CTA Buttons */}
+            <div style={{ display: 'flex', gap: '1rem' }}>
               <button 
-                className="btn-checkout" 
-                style={{ flex: 1 }}
                 onClick={() => {
-                  addToCart(productModal, quantity, selectedColor, selectedSize);
+                  addToCart(productModal);
                   setProductModal(null);
                 }}
+                className="btn-checkout"
+                style={{ flex: 1 }}
               >
                 <ShoppingBag size={18} />
-                <span>Add to Tariff Cart</span>
+                <span>Add to Cart — {formatPrice(productModal.priceNGN)}</span>
               </button>
 
               <button 
-                className={`product-wishlist-btn ${isWishlisted ? 'active' : ''}`}
-                style={{ width: '48px', height: '48px', position: 'static' }}
                 onClick={() => toggleWishlist(productModal.id)}
+                style={{
+                  background: isWishlisted ? '#FEF2F2' : '#F1F5F9',
+                  border: isWishlisted ? '1px solid #FCA5A5' : '1px solid #CBD5E1',
+                  color: isWishlisted ? '#DC2626' : '#475569',
+                  width: '48px',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
               >
-                <Heart size={20} fill={isWishlisted ? "#fff" : "none"} />
+                <Heart size={20} fill={isWishlisted ? "#DC2626" : "none"} />
               </button>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#64748B', fontSize: '0.8rem', marginTop: '1rem' }}>
+              <Truck size={15} color="#7C3AED" />
+              <span>Guaranteed Delivery: {productModal.guaranteedDeliveryDays || '2-4 Days Nationwide'}</span>
             </div>
 
           </div>

@@ -1,41 +1,47 @@
 import React from 'react';
 import { useShop } from '../context/ShopContext';
 import { ProductCard } from './ProductCard';
-import { Zap, Flame } from 'lucide-react';
+import { Zap, Clock } from 'lucide-react';
 
-export const FlashSales = () => {
-  const { products, timeLeft } = useShop();
+export const FlashSales = ({ flashProducts = [] }) => {
+  const { timeLeft } = useShop();
 
-  const flashProducts = products.filter(p => p.isFlashSale);
-
-  const padZero = (n) => String(n).padStart(2, '0');
+  if (!flashProducts || flashProducts.length === 0) return null;
 
   return (
-    <section style={{ marginBottom: '3rem' }}>
+    <section id="flash-deals" style={{ marginBottom: '2.5rem' }}>
       <div className="container">
         
-        {/* Flash Sale Header Row */}
-        <div className="section-header-row" style={{ background: 'rgba(239, 68, 68, 0.06)', padding: '1rem 1.5rem', borderRadius: '16px', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
+        {/* Flash Section Header with Live Countdown */}
+        <div className="section-header-row" style={{ background: '#FEF2F2', padding: '1.25rem 1.5rem', borderRadius: '16px', border: '1px solid #FCA5A5' }}>
+          
           <div className="section-title-wrap">
-            <Flame size={28} color="#EF4444" className="animate-pulse-glow" />
+            <div style={{ background: '#DC2626', color: '#fff', padding: '10px', borderRadius: '12px' }}>
+              <Zap size={24} fill="#fff" />
+            </div>
             <div>
-              <h2 className="section-title">DAILY BLITZ FLASH DROPS</h2>
-              <p style={{ color: '#9CA3AF', fontSize: '0.85rem' }}>Limited quantities at 70%–90% off factory rates</p>
+              <h2 className="section-title" style={{ color: '#991B1B' }}>FLASH DEALS</h2>
+              <p style={{ color: '#B91C1C', fontSize: '0.85rem', fontWeight: 600 }}>Limited time factory drop — grab before stock runs out!</p>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <span style={{ fontSize: '0.85rem', color: '#9CA3AF', fontWeight: 600 }}>ENDS IN:</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: '#991B1B', fontWeight: 700, fontSize: '0.85rem' }}>
+              <Clock size={16} />
+              <span>Ends In:</span>
+            </div>
+
             <div className="timer-box">
-              <span className="timer-num">{padZero(timeLeft.hours)}</span>:
-              <span className="timer-num">{padZero(timeLeft.minutes)}</span>:
-              <span className="timer-num">{padZero(timeLeft.seconds)}</span>
+              <span className="timer-num">{String(timeLeft.hours).padStart(2, '0')}</span> : 
+              <span className="timer-num">{String(timeLeft.minutes).padStart(2, '0')}</span> : 
+              <span className="timer-num">{String(timeLeft.seconds).padStart(2, '0')}</span>
             </div>
           </div>
+
         </div>
 
-        {/* Flash Products Row */}
-        <div className="products-grid" style={{ marginTop: '1.5rem' }}>
+        {/* Product Cards Grid */}
+        <div className="products-grid" style={{ marginTop: '1.5rem', marginBottom: 0 }}>
           {flashProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}

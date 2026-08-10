@@ -1,36 +1,39 @@
 :root {
-  /* Color Palette - Cyber Luxe & Vibrant Deals */
-  --bg-main: #0B0F19;
-  --bg-card: rgba(18, 24, 38, 0.75);
-  --bg-card-hover: rgba(28, 36, 56, 0.9);
-  --bg-header: rgba(11, 15, 25, 0.85);
-  --bg-modal: #111726;
+  /* Color Palette - Light, Clean, Modern Marketplace */
+  --bg-main: #F8FAFC;        /* Light Slate Off-White */
+  --bg-card: #FFFFFF;        /* Pure White Cards */
+  --bg-card-hover: #FFFFFF;
+  --bg-header: rgba(255, 255, 255, 0.95);
+  --bg-section-alt: #F1F5F9;  /* Soft Neutral Section Background */
+  --bg-modal: #FFFFFF;
 
   /* Accent Colors */
   --primary: #7C3AED;        /* Electric Violet */
   --primary-hover: #6D28D9;
-  --primary-light: rgba(124, 58, 237, 0.15);
+  --primary-light: #F3E8FF;
   
-  --secondary: #10B981;      /* Luminous Emerald / Free Duty */
-  --secondary-hover: #059669;
-  --secondary-light: rgba(16, 185, 129, 0.15);
+  --secondary: #059669;      /* Emerald Green (Prices & Duty Pre-Cleared) */
+  --secondary-hover: #047857;
+  --secondary-light: #ECFDF5;
 
-  --accent-gold: #F59E0B;     /* Flash Sales / Deal Badges */
-  --accent-red: #EF4444;      /* Price Slash / Urgency Ticker */
-  --accent-cyan: #06B6D4;     /* Tech Badges */
+  --accent-gold: #D97706;     /* Ratings & Badges */
+  --accent-red: #DC2626;      /* Flash Sales / Discounts */
+  --accent-cyan: #0284C7;     /* Tech Badges */
 
-  /* Text Colors */
-  --text-main: #F9FAFB;
-  --text-muted: #9CA3AF;
-  --text-dark: #1F2937;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-highlight: rgba(124, 58, 237, 0.4);
+  /* Text Colors for Maximum Readability */
+  --text-main: #0F172A;      /* Dark Slate Charcoal */
+  --text-muted: #64748B;     /* Muted Slate Gray */
+  --text-dark: #020617;
+  --border-color: #E2E8F0;    /* Subtle Light Border */
+  --border-highlight: #C084FC;
 
   /* Shadows & Glassmorphism */
-  --glass-bg: rgba(18, 24, 38, 0.65);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-  --shadow-lg: 0 20px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(124, 58, 237, 0.15);
-  --shadow-glow: 0 0 25px rgba(124, 58, 237, 0.35);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: 1px solid #E2E8F0;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 0 20px rgba(124, 58, 237, 0.15);
 
   /* Fonts */
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -38,8 +41,8 @@
 
   /* Radius */
   --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
   --radius-full: 9999px;
 }
 
@@ -62,6 +65,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   letter-spacing: -0.02em;
+  color: var(--text-main);
 }
 
 a {
@@ -81,10 +85,10 @@ button {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-main);
+  background: #F1F5F9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1F293D;
+  background: #CBD5E1;
   border-radius: var(--radius-full);
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -98,18 +102,17 @@ button {
   padding: 0 1.5rem;
 }
 
-/* Glassmorphism Card Utility */
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: var(--glass-border);
+/* Card Utilities */
+.white-panel {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Badge Utilities */
+/* Badges */
 .badge-flash {
-  background: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);
+  background: linear-gradient(135deg, #DC2626 0%, #EA580C 100%);
   color: #fff;
   font-weight: 800;
   font-size: 0.75rem;
@@ -117,14 +120,14 @@ button {
   border-radius: var(--radius-sm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.3);
 }
 
 .badge-tariff-free {
   background: var(--secondary-light);
   color: var(--secondary);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  font-weight: 600;
+  border: 1px solid rgba(5, 150, 105, 0.3);
+  font-weight: 700;
   font-size: 0.75rem;
   padding: 0.2rem 0.55rem;
   border-radius: var(--radius-full);
@@ -133,7 +136,7 @@ button {
   gap: 0.3rem;
 }
 
-/* Toast System */
+/* Toast Notification System */
 .toast-container {
   position: fixed;
   bottom: 24px;
@@ -147,12 +150,12 @@ button {
 
 .toast-item {
   pointer-events: auto;
-  background: #1E293B;
+  background: #0F172A;
   border-left: 4px solid var(--primary);
   color: #fff;
   padding: 12px 20px;
   border-radius: var(--radius-sm);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: var(--shadow-lg);
   display: flex;
   align-items: center;
   gap: 12px;

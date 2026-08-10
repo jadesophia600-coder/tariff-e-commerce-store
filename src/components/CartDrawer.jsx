@@ -1,30 +1,35 @@
 import React, { useState } from 'react';
 import { useShop } from '../context/ShopContext';
-import { X, Trash2, ShieldCheck, Tag, ArrowRight, Truck } from 'lucide-react';
+import { fallbackProductImage } from '../data/products';
+import { ShoppingBag, X, Plus, Minus, Trash2, ShieldCheck, Tag, ArrowRight, Truck } from 'lucide-react';
 
 export const CartDrawer = () => {
   const { 
     cart, 
     cartOpen, 
     setCartOpen, 
-    removeFromCart, 
-    updateCartQty, 
     formatPrice, 
-    rawSubtotal, 
-    totalTariffDuty, 
-    discountAmount, 
-    shippingCost, 
-    finalTotal, 
-    activePromo, 
-    applyPromoCode, 
-    setCheckoutOpen 
+    updateCartQty, 
+    removeFromCart,
+    rawSubtotal,
+    totalTariffDuty,
+    discountAmount,
+    shippingCost,
+    finalTotal,
+    applyPromoCode,
+    activePromo,
+    setCheckoutOpen
   } = useShop();
 
   const [promoInput, setPromoInput] = useState('');
 
-  const freeShippingThreshold = 35;
-  const progressToFreeShipping = Math.min(100, (rawSubtotal / freeShippingThreshold) * 100);
-  const amountNeededForFreeShipping = Math.max(0, freeShippingThreshold - rawSubtotal);
+  const handleApplyPromo = (e) => {
+    e.preventDefault();
+    if (promoInput) {
+      applyPromoCode(promoInput);
+      setPromoInput('');
+    }
+  };
 
   return (
     <div className={`cart-drawer-overlay ${cartOpen ? 'active' : ''}`} onClick={() => setCartOpen(false)}>
@@ -32,65 +37,74 @@ export const CartDrawer = () => {
         
         {/* Cart Header */}
         <div className="cart-header">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#fff' }}>Your Tariff Cart</h3>
-            <span style={{ background: '#7C3AED', color: '#fff', padding: '0.15rem 0.5rem', borderRadius: '12px', fontSize: '0.75rem', fontWeight: 800 }}>
-              {cart.reduce((s, i) => s + i.quantity, 0)} Items
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <ShoppingBag size={22} color="var(--primary)" />
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0F172A' }}>My Tariff Shopping Cart</h3>
+            <span style={{ background: 'var(--primary-light)', color: 'var(--primary)', fontSize: '0.75rem', fontWeight: 800, padding: '0.15rem 0.6rem', borderRadius: '20px' }}>
+              {cart.reduce((sum, item) => sum + item.quantity, 0)} Items
             </span>
           </div>
-          <button className="close-modal-btn" style={{ position: 'static' }} onClick={() => setCartOpen(false)}>
-            <X size={18} />
+
+          <button onClick={() => setCartOpen(false)} style={{ color: '#64748B' }}>
+            <X size={22} />
           </button>
         </div>
 
         {/* Free Shipping Progress Indicator */}
-        <div style={{ background: 'rgba(124, 58, 237, 0.08)', padding: '0.85rem 1.5rem', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.8rem', color: '#D1D5DB', marginBottom: '0.35rem' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <Truck size={14} color="#10B981" />
-              {amountNeededForFreeShipping === 0 ? (
-                <strong style={{ color: '#10B981' }}>You Unlocked FREE Express Shipping! 🎉</strong>
-              ) : (
-                <>Add <strong style={{ color: '#F59E0B' }}>{formatPrice(amountNeededForFreeShipping)}</strong> for FREE Shipping</>
-              )}
-            </span>
-          </div>
-          <div className="stock-bar-bg" style={{ height: '6px' }}>
-            <div className="stock-bar-fill" style={{ width: `${progressToFreeShipping}%`, background: 'linear-gradient(90deg, #7C3AED 0%, #10B981 100%)' }}></div>
-          </div>
+        <div style={{ background: '#ECFDF5', borderBottom: '1px solid #A7F3D0', padding: '0.75rem 1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#047857', fontSize: '0.825rem', fontWeight: 700 }}>
+          <Truck size={16} />
+          <span>
+            {rawSubtotal >= 50000 
+              ? "🎉 You unlocked FREE Nationwide Delivery across Nigeria!" 
+              : `Add ${formatPrice(50000 - rawSubtotal)} more for FREE Nationwide Shipping`}
+          </span>
         </div>
 
-        {/* Items List */}
+        {/* Scrollable Cart Items */}
         <div className="cart-items-scroll">
           {cart.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#9CA3AF' }}>
-              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🛍️</div>
-              <h4>Your Cart is Empty</h4>
-              <p style={{ fontSize: '0.85rem', marginTop: '0.4rem' }}>Explore flash deals and save up to 90%!</p>
+            <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
+              <ShoppingBag size={48} color="#94A3B8" style={{ margin: '0 auto 1rem' }} />
+              <h4 style={{ color: '#0F172A', fontSize: '1.1rem' }}>Your Cart is Empty</h4>
+              <p style={{ color: '#64748B', fontSize: '0.85rem', marginTop: '0.35rem' }}>
+                Explore flash deals & popular departments to add factory direct items.
+              </p>
             </div>
           ) : (
-            cart.map((item) => (
+            cart.map(item => (
               <div key={item.product.id} className="cart-item">
-                <img src={item.product.image} alt={item.product.title} className="cart-item-img" />
+                <img 
+                  src={item.product.image} 
+                  alt={item.product.title} 
+                  className="cart-item-img"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = fallbackProductImage;
+                  }}
+                />
+
                 <div className="cart-item-details">
                   <div>
                     <h4 className="cart-item-title">{item.product.title}</h4>
-                    <div style={{ fontSize: '0.75rem', color: '#9CA3AF' }}>
-                      {item.selectedColor && <span>Color: {item.selectedColor} </span>}
-                      {item.selectedSize && <span>| Size: {item.selectedSize}</span>}
+                    <div style={{ fontSize: '0.75rem', color: '#64748B' }}>
+                      Category: {item.product.category}
                     </div>
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.5rem' }}>
-                    <div className="cart-item-price">{formatPrice(item.product.price * item.quantity)}</div>
+                    <span className="cart-item-price">{formatPrice(item.product.priceNGN)}</span>
 
                     <div className="qty-controls">
-                      <button className="qty-btn" onClick={() => updateCartQty(item.product.id, item.quantity - 1)}>-</button>
-                      <span style={{ fontSize: '0.85rem', fontWeight: 700, minWidth: '18px', textAlign: 'center' }}>{item.quantity}</span>
-                      <button className="qty-btn" onClick={() => updateCartQty(item.product.id, item.quantity + 1)}>+</button>
+                      <button onClick={() => updateCartQty(item.product.id, item.quantity - 1)} className="qty-btn">
+                        <Minus size={14} />
+                      </button>
+                      <span style={{ fontWeight: 800, fontSize: '0.85rem', padding: '0 0.3rem' }}>{item.quantity}</span>
+                      <button onClick={() => updateCartQty(item.product.id, item.quantity + 1)} className="qty-btn">
+                        <Plus size={14} />
+                      </button>
                     </div>
 
-                    <button onClick={() => removeFromCart(item.product.id)} style={{ color: '#EF4444' }}>
+                    <button onClick={() => removeFromCart(item.product.id)} style={{ color: '#DC2626' }}>
                       <Trash2 size={16} />
                     </button>
                   </div>
@@ -100,78 +114,86 @@ export const CartDrawer = () => {
           )}
         </div>
 
-        {/* Footer & Checkout */}
+        {/* Promo Code Input & Summary Footer */}
         {cart.length > 0 && (
           <div className="cart-footer">
             
-            {/* Promo Code Input */}
-            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
-              <div style={{ flex: 1, position: 'relative', display: 'flex', alignItems: 'center' }}>
-                <Tag size={14} color="#9CA3AF" style={{ position: 'absolute', left: '10px' }} />
-                <input 
-                  type="text" 
-                  placeholder="Promo Code (e.g. TARIFF2026)" 
+            {/* Promo Form */}
+            <form onSubmit={handleApplyPromo} style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
+              <div style={{ flex: 1, position: 'relative' }}>
+                <Tag size={16} color="#64748B" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }} />
+                <input
+                  type="text"
+                  placeholder="Promo Code (TARIFF2026)"
                   value={promoInput}
                   onChange={(e) => setPromoInput(e.target.value)}
                   style={{
                     width: '100%',
-                    background: 'rgba(255,255,255,0.05)',
-                    border: '1px solid var(--border-color)',
+                    padding: '0.5rem 0.5rem 0.5rem 2.2rem',
+                    background: '#FFFFFF',
+                    border: '1px solid #CBD5E1',
                     borderRadius: '8px',
-                    padding: '0.5rem 0.5rem 0.5rem 2rem',
-                    color: '#fff',
-                    fontSize: '0.8rem'
+                    fontSize: '0.85rem',
+                    color: '#0F172A',
+                    outline: 'none'
                   }}
                 />
               </div>
               <button 
-                onClick={() => {
-                  if (applyPromoCode(promoInput)) setPromoInput('');
-                }}
-                style={{ background: '#7C3AED', color: '#fff', border: 'none', borderRadius: '8px', padding: '0 0.85rem', fontWeight: 700, fontSize: '0.8rem' }}
+                type="submit" 
+                style={{ background: 'var(--primary)', color: '#fff', padding: '0.5rem 1rem', borderRadius: '8px', fontWeight: 700, fontSize: '0.85rem' }}
               >
                 Apply
               </button>
-            </div>
+            </form>
 
-            {/* Transparent Tariff Duty Breakdown */}
-            <div className="tariff-breakdown-box">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#10B981', fontWeight: 700, marginBottom: '0.5rem' }}>
-                <ShieldCheck size={16} />
-                <span>100% Pre-Calculated Duty Guarantee</span>
+            {activePromo && (
+              <div style={{ background: '#F3E8FF', border: '1px solid #C084FC', color: 'var(--primary)', fontSize: '0.78rem', fontWeight: 700, padding: '0.4rem 0.75rem', borderRadius: '6px', marginBottom: '0.75rem' }}>
+                ✓ Code {activePromo.code} active ({activePromo.desc})
               </div>
+            )}
+
+            {/* Tariff Breakdown Box */}
+            <div className="tariff-breakdown-box">
               <div className="tariff-breakdown-row">
                 <span>Items Subtotal</span>
                 <span>{formatPrice(rawSubtotal)}</span>
               </div>
+              
+              <div className="tariff-breakdown-row">
+                <span>Customs Duty & Clearance</span>
+                <span style={{ color: '#059669', fontWeight: 700 }}>
+                  {totalTariffDuty === 0 ? "Pre-Cleared (FREE)" : formatPrice(totalTariffDuty)}
+                </span>
+              </div>
+
               {discountAmount > 0 && (
-                <div className="tariff-breakdown-row" style={{ color: '#F59E0B' }}>
-                  <span>Promo Discount ({activePromo?.code})</span>
+                <div className="tariff-breakdown-row" style={{ color: '#DC2626' }}>
+                  <span>Promo Discount</span>
                   <span>-{formatPrice(discountAmount)}</span>
                 </div>
               )}
+
               <div className="tariff-breakdown-row">
-                <span>Customs Tariff Duty (Pre-paid)</span>
-                <span>{totalTariffDuty === 0 ? 'FREE / INCLUDED' : formatPrice(totalTariffDuty)}</span>
+                <span>Nationwide Shipping</span>
+                <span>{shippingCost === 0 ? "FREE" : formatPrice(shippingCost)}</span>
               </div>
-              <div className="tariff-breakdown-row">
-                <span>Express Shipping</span>
-                <span>{shippingCost === 0 ? 'FREE' : formatPrice(shippingCost)}</span>
-              </div>
+
               <div className="tariff-breakdown-row total">
-                <span>Guaranteed Doorstep Total</span>
-                <span style={{ color: '#10B981', fontSize: '1.15rem' }}>{formatPrice(finalTotal)}</span>
+                <span>Total Payable</span>
+                <span>{formatPrice(finalTotal)}</span>
               </div>
             </div>
 
+            {/* Checkout Button */}
             <button 
-              className="btn-checkout"
+              className="btn-checkout" 
               onClick={() => {
                 setCartOpen(false);
                 setCheckoutOpen(true);
               }}
             >
-              <span>Proceed to Tariff Checkout</span>
+              <span>Proceed to Checkout</span>
               <ArrowRight size={18} />
             </button>
 

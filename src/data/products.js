@@ -1,300 +1,788 @@
 export const categories = [
   { 
     id: 'all', 
-    name: 'All Factory Direct Deals', 
+    name: 'All Marketplace Deals', 
     icon: 'Zap', 
-    count: 12000, 
+    count: 36, 
     image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80', 
-    description: 'Explore 12,000+ factory-direct mega discounts with zero hidden tax.' 
+    description: 'Explore verified factory-direct deals with zero surprise duty fees.' 
   },
   { 
-    id: 'electronics', 
-    name: 'Phones & Tech Gadgets', 
+    id: 'phones', 
+    name: 'Phones & Tablets', 
     icon: 'Smartphone', 
-    count: 1500, 
+    count: 6, 
     image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80', 
-    description: 'Smartphones, 4K Drones, Slim Laptops & Curved Monitors (1,500+ Items)' 
+    description: 'iPhone 15 Pro, Samsung S24, Pixel 8, Redmi Note & Infinix' 
   },
   { 
-    id: 'wearables', 
-    name: 'Smart Wearables', 
-    icon: 'Watch', 
-    count: 1500, 
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80', 
-    description: 'AMOLED Smartwatches, Health Rings & Bio Trackers (1,500+ Items)' 
+    id: 'laptops', 
+    name: 'Laptops & Computers', 
+    icon: 'Laptop', 
+    count: 5, 
+    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80', 
+    description: 'MacBook Air, HP Pavilion, Lenovo ThinkPad, Dell & ASUS' 
   },
   { 
     id: 'fashion', 
-    name: 'Streetwear & Apparel', 
+    name: 'Fashion & Footwear', 
     icon: 'ShoppingBag', 
-    count: 1500, 
+    count: 6, 
     image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80', 
-    description: 'LED Sneakers, Reflective Hoodies & Anti-theft Backpacks (1,500+ Items)' 
+    description: 'Sneakers, Hoodies, Graphic Tees, Denim Jeans & Watches' 
   },
   { 
-    id: 'audio', 
-    name: 'Pro Audio & Sound', 
-    icon: 'Headphones', 
-    count: 1500, 
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80', 
-    description: 'ANC Headphones, Spatial Earbuds & Bluetooth Speakers (1,500+ Items)' 
-  },
-  { 
-    id: 'hometech', 
-    name: 'Smart Home & Living', 
+    id: 'home', 
+    name: 'Home & Kitchen', 
     icon: 'Home', 
-    count: 1500, 
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80', 
-    description: 'LiDAR Robot Vacuums, RGB Ambient Lighting & Home Tech (1,500+ Items)' 
+    count: 5, 
+    image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80', 
+    description: 'Air Fryers, Blenders, Espresso Makers & Organizers' 
   },
   { 
-    id: 'gaming', 
-    name: 'Cyber Gaming Gear', 
-    icon: 'Gamepad2', 
-    count: 1500, 
-    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80', 
-    description: 'VR Motion Kits, Mechanical Keyboards & Light Mice (1,500+ Items)' 
+    id: 'electronics', 
+    name: 'Electronics & Audio', 
+    icon: 'Headphones', 
+    count: 5, 
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80', 
+    description: 'ANC Headphones, JBL Speakers, Power Banks & Smart Watches' 
   },
   { 
     id: 'beauty', 
-    name: 'Beauty & Skincare', 
+    name: 'Beauty & Grooming', 
     icon: 'Sparkles', 
-    count: 1500, 
+    count: 5, 
     image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80', 
-    description: 'Microcurrent Facial Wands & High-Speed Ionic Hair Dryers (1,500+ Items)' 
-  },
-  { 
-    id: 'sports', 
-    name: 'Sports & Fitness', 
-    icon: 'Activity', 
-    count: 1500, 
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80', 
-    description: 'Percussion Massage Guns, Fitness Tech & Gym Gear (1,500+ Items)' 
+    description: 'Skincare Serums, Hair Dryers, Fragrances & Trimmers' 
   }
 ];
-
-// Rich, diverse image libraries per category
-const categoryPhotos = {
-  electronics: [
-    'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1563203369-26f2e4a5ccf7?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1574944985070-8f30534970d7?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=800&q=80'
-  ],
-  wearables: [
-    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1510017803434-a899398421b3?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1517502474097-f9b30659dadb?auto=format&fit=crop&w=800&q=80'
-  ],
-  fashion: [
-    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80'
-  ],
-  audio: [
-    'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=800&q=80'
-  ],
-  hometech: [
-    'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=800&q=80'
-  ],
-  gaming: [
-    'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1622979135225-d2ba269bc1bd?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'
-  ],
-  beauty: [
-    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80'
-  ],
-  sports: [
-    'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80'
-  ]
-};
-
-// Unique Brand Names
-const brandPrefixes = ['Tariff Cyber', 'Tariff Apex', 'Tariff Pulse', 'Tariff Matrix', 'Tariff Quantum', 'Tariff Horizon', 'Tariff Stealth', 'Tariff Nova', 'Tariff Titan', 'Tariff Sonic', 'Tariff Aero', 'Tariff Lumina', 'Tariff Edge', 'Tariff Elite', 'Tariff Prism', 'Tariff Vortex', 'Tariff Phantom', 'Tariff Zenith', 'Tariff Vantage', 'Tariff Kinetic'];
-
-// Unique Product Items per Category
-const categoryProductCatalog = {
-  electronics: [
-    { title: 'Foldable OLED Dual-Screen Phone', price: 299.99, orig: 899.99 },
-    { title: '4K HDR Obstacle Avoidance Drone', price: 89.99, orig: 349.99 },
-    { title: 'UltraBook Pro M2 Metal Laptop', price: 349.99, orig: 999.99 },
-    { title: 'Curved 165Hz Frameless Gaming Monitor', price: 189.99, orig: 599.99 },
-    { title: 'Magnetic Wireless Fast PowerBank 30000mAh', price: 29.99, orig: 99.99 },
-    { title: 'Mini Portable 1080P Projector', price: 69.99, orig: 249.99 },
-    { title: 'Waterproof 4K Action Camera Kit', price: 49.99, orig: 179.99 },
-    { title: 'Fast 120W GaN Desktop Charger Hub', price: 24.99, orig: 85.00 },
-    { title: 'AR Smart Glasses HUD Display', price: 149.99, orig: 499.99 },
-    { title: 'Rugged Dual SIM Outdoor 5G Phone', price: 199.99, orig: 599.99 }
-  ],
-  wearables: [
-    { title: 'AMOLED Retina Smartwatch Ultra', price: 39.99, orig: 199.99 },
-    { title: 'FitRing Pro Biomark Health Ring', price: 29.99, orig: 149.99 },
-    { title: 'Solar Outdoor GPS Track Watch', price: 49.99, orig: 220.00 },
-    { title: 'ECG Bio-Sensor Heart Rate Band', price: 22.99, orig: 89.99 },
-    { title: 'Slim AMOLED Fitness Tracker', price: 17.99, orig: 69.99 },
-    { title: 'Tactical Military Grade Smartwatch', price: 54.99, orig: 249.99 },
-    { title: 'Kids Safety GPS Locator Smartwatch', price: 21.99, orig: 79.99 }
-  ],
-  fashion: [
-    { title: 'Smart LED Light Athletic Sneakers', price: 54.99, orig: 169.99 },
-    { title: 'Urban Anti-theft TSA Backpack', price: 27.99, orig: 99.99 },
-    { title: 'Neon 3M Reflective Oversized Hoodie', price: 22.50, orig: 75.00 },
-    { title: 'Waterproof Techwear Modular Cargo Pants', price: 34.99, orig: 120.00 },
-    { title: 'Retro Chunky Sole Streetwear Kicks', price: 48.99, orig: 159.99 },
-    { title: 'Smart Heated Winter Puffer Jacket', price: 69.99, orig: 249.99 },
-    { title: 'Polarized Cyberpunk Sunglasses', price: 14.99, orig: 59.99 }
-  ],
-  audio: [
-    { title: 'SoundMatrix Pro ANC Headphones', price: 49.50, orig: 180.00 },
-    { title: 'Pods Ultra Spatial ANC Earbuds', price: 19.99, orig: 89.99 },
-    { title: 'Bone Conduction Open-Ear Sport Headset', price: 28.99, orig: 110.00 },
-    { title: 'RGB Desktop Soundbar Speaker', price: 25.99, orig: 89.99 },
-    { title: 'Studio Podcast USB Condenser Mic', price: 32.99, orig: 129.99 },
-    { title: 'Hi-Fi Lossless Bluetooth DAC Amp', price: 45.99, orig: 169.99 },
-    { title: 'Waterproof Outdoor Party Speaker 50W', price: 39.99, orig: 149.99 }
-  ],
-  hometech: [
-    { title: 'Lumina Smart Ambient Light Bar Duo', price: 24.99, orig: 79.99 },
-    { title: 'BotClean LiDAR Laser Robot Vacuum & Mop', price: 119.99, orig: 399.99 },
-    { title: 'HEPA Smart Air Purifier & Ionizer', price: 49.99, orig: 189.99 },
-    { title: 'Wireless Outdoor Solar Security Camera', price: 36.99, orig: 139.99 },
-    { title: 'Smart Fingerprint Keyless Door Lock', price: 58.99, orig: 210.00 },
-    { title: 'Automatic Infrared Soap & Sanitizer Dispenser', price: 16.99, orig: 49.99 }
-  ],
-  gaming: [
-    { title: 'PrismGamer Mechanical Wireless Keyboard', price: 29.99, orig: 99.99 },
-    { title: 'NeonGlide Ultra Light 58g Gaming Mouse', price: 19.99, orig: 69.99 },
-    { title: 'VR Motion Matrix 4K Haptic Glasses Kit', price: 129.99, orig: 449.99 },
-    { title: 'Universal Wireless Gamepad Controller', price: 22.99, orig: 79.99 },
-    { title: 'RGB Gaming Headset Stand with USB Hub', price: 18.99, orig: 59.99 },
-    { title: '4K 60fps HDMI Video Capture Card', price: 27.99, orig: 99.99 }
-  ],
-  beauty: [
-    { title: 'GlowSculpt Microcurrent Facial Toning Wand', price: 21.99, orig: 89.99 },
-    { title: 'SilkSonic 110k RPM Ionic Hair Dryer', price: 34.99, orig: 150.00 },
-    { title: '7-Color LED Phototherapy Face Mask', price: 29.99, orig: 119.99 },
-    { title: 'Ultrasonic Skin Scrubber Blackhead Remover', price: 15.99, orig: 55.00 },
-    { title: 'Sonic Electric Toothbrush with 8 Heads', price: 18.99, orig: 69.99 }
-  ],
-  sports: [
-    { title: 'PulseFlex Percussion Massage Gun', price: 28.99, orig: 110.00 },
-    { title: 'Smart LED Count Jump Rope', price: 12.99, orig: 45.00 },
-    { title: 'Heavy Duty Resistance Band Gym Set', price: 16.99, orig: 59.99 },
-    { title: 'Smart Body Fat Scale Bluetooth Sync', price: 19.99, orig: 69.99 },
-    { title: 'Pneumatic Recovery Air Compression Boots', price: 89.99, orig: 320.00 }
-  ]
-};
-
-// Generator that creates 1,500 UNIQUE items per category with distinct titles and photos
-export function generateProductsForCategory(category, count = 1500) {
-  const photos = categoryPhotos[category] || categoryPhotos.electronics;
-  const items = categoryProductCatalog[category] || categoryProductCatalog.electronics;
-  
-  const generated = [];
-  for (let i = 1; i <= count; i++) {
-    const brand = brandPrefixes[(i * 3 + category.length) % brandPrefixes.length];
-    const template = items[(i - 1) % items.length];
-    
-    // Vary model series to ensure 100% unique titles
-    const editionNumber = Math.floor(i / items.length) + 1;
-    const seriesCode = 100 + (i * 13) % 900;
-    const title = editionNumber > 1 
-      ? `${brand} ${template.title} V${editionNumber} (${seriesCode} Series)`
-      : `${brand} ${template.title} (${seriesCode} Series)`;
-
-    // Vary price slightly per model so every price is unique
-    const priceVariance = Number(((i % 17) * 0.75).toFixed(2));
-    const finalPrice = Number((template.price + priceVariance).toFixed(2));
-    const discount = 50 + (i * 7) % 38; // 50% to 88% off
-    const origPrice = Number((finalPrice / (1 - discount / 100)).toFixed(2));
-    
-    const rating = Number((4.3 + (i % 8) * 0.1).toFixed(1));
-    const reviews = 120 + (i * 29) % 18000;
-    const stockTotal = 40 + (i * 7) % 220;
-    const stockClaimed = Math.floor(stockTotal * (0.65 + (i % 30) * 0.01));
-    const isFlash = (i % 3 === 0);
-    const tariffDuty = (i % 4 === 0) ? 0.00 : Number(((i % 6) * 1.15).toFixed(2));
-
-    // Dynamic distinct photo selector using photo pool and index
-    const photoUrl = photos[(i + Math.floor(i / photos.length)) % photos.length];
-
-    generated.push({
-      id: `prod-${category}-${i}`,
-      title,
-      category,
-      price: finalPrice,
-      originalPrice: origPrice,
-      discountPercent: discount,
-      rating,
-      reviewsCount: reviews,
-      image: photoUrl,
-      stockTotal,
-      stockClaimed,
-      isFlashSale: isFlash,
-      tariffRatePercent: (i % 4 === 0) ? 0 : 5,
-      tariffDutyAmount: tariffDuty,
-      guaranteedDeliveryDays: `${2 + (i % 3)}-${4 + (i % 3)} Days Express`,
-      description: `Factory-direct premium ${template.title.toLowerCase()} engineered with next-gen components, long durability, and 100% tax pre-cleared doorstep delivery guarantee.`,
-      features: ['Factory Direct Warranty', 'Pre-Cleared Customs Tax', 'Heavy Duty Build', 'Express Logistics'],
-      colors: ['#7C3AED', '#0B0F19', '#10B981'],
-      sizes: ['Standard']
-    });
-  }
-  return generated;
-}
-
-// Generate complete 12,000+ dataset across all 8 categories
-export const allMockProducts = [
-  ...generateProductsForCategory('electronics', 1500),
-  ...generateProductsForCategory('wearables', 1500),
-  ...generateProductsForCategory('fashion', 1500),
-  ...generateProductsForCategory('audio', 1500),
-  ...generateProductsForCategory('hometech', 1500),
-  ...generateProductsForCategory('gaming', 1500),
-  ...generateProductsForCategory('beauty', 1500),
-  ...generateProductsForCategory('sports', 1500)
-];
-
-export const mockProducts = allMockProducts;
 
 export const fallbackProductImage = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80';
+
+// Curated Unique Products Dataset in NGN (Nigerian Naira ₦)
+export const masterProductsList = [
+  // --- PHONES & TABLETS ---
+  {
+    id: 'ph-1',
+    title: 'Apple iPhone 15 Pro Max (256GB, Natural Titanium)',
+    category: 'phones',
+    priceNGN: 1450000,
+    originalPriceNGN: 1750000,
+    discountPercent: 17,
+    rating: 4.9,
+    reviewsCount: 3840,
+    seller: 'Slot Electronics ✓',
+    sellerBadge: 'Official Brand Store',
+    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 45,
+    stockClaimed: 38,
+    isFlashSale: true,
+    sectionTag: 'flashDeals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '1-3 Days Express',
+    description: 'Forged in titanium with A17 Pro chip, customizable Action Button, and 48MP main camera system with 5x Telephoto optical zoom.',
+    features: ['Titanium Frame', 'A17 Pro Chip', '48MP Camera', 'Action Button'],
+    colors: ['#383838', '#E3E3E3', '#253043'],
+    sizes: ['256GB', '512GB']
+  },
+  {
+    id: 'ph-2',
+    title: 'Samsung Galaxy S24 Ultra 5G (512GB, Titanium Black)',
+    category: 'phones',
+    priceNGN: 1380000,
+    originalPriceNGN: 1650000,
+    discountPercent: 16,
+    rating: 4.9,
+    reviewsCount: 2910,
+    seller: 'Samsung Official Hub ✓',
+    sellerBadge: 'Verified Mall',
+    image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 60,
+    stockClaimed: 42,
+    isFlashSale: false,
+    sectionTag: 'bestSellers',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Galaxy AI is here. Epic 200MP camera, built-in S Pen, Snapdragon 8 Gen 3 for Galaxy, and 5000mAh battery.',
+    features: ['Galaxy AI', 'Built-in S Pen', '200MP Camera', 'Snapdragon 8 Gen 3'],
+    colors: ['#0F172A', '#D97706', '#64748B'],
+    sizes: ['256GB', '512GB']
+  },
+  {
+    id: 'ph-3',
+    title: 'Google Pixel 8 Pro 5G (128GB, Bay Blue)',
+    category: 'phones',
+    priceNGN: 890000,
+    originalPriceNGN: 1100000,
+    discountPercent: 19,
+    rating: 4.8,
+    reviewsCount: 1420,
+    image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 30,
+    stockClaimed: 22,
+    isFlashSale: false,
+    sectionTag: 'trending',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '3-5 Days',
+    description: 'Powered by Google Tensor G3, custom Pixel AI photo editing, Super Actua display, and 7 years of OS updates.',
+    features: ['Google Tensor G3', 'Magic Eraser AI', 'Super Actua Display', '7 Yrs OS Updates'],
+    colors: ['#0284C7', '#0F172A', '#F1F5F9'],
+    sizes: ['128GB', '256GB']
+  },
+  {
+    id: 'ph-4',
+    title: 'Xiaomi Redmi Note 13 Pro+ 5G (256GB, Midnight Black)',
+    category: 'phones',
+    priceNGN: 395000,
+    originalPriceNGN: 480000,
+    discountPercent: 18,
+    rating: 4.7,
+    reviewsCount: 4520,
+    image: 'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 100,
+    stockClaimed: 84,
+    isFlashSale: true,
+    sectionTag: 'flashDeals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: '200MP OIS camera, 120W HyperCharge (0 to 100% in 19 mins), IP68 dust and water resistance, and 120Hz curved AMOLED.',
+    features: ['200MP OIS Camera', '120W HyperCharge', 'IP68 Water Resistant', '120Hz AMOLED'],
+    colors: ['#0F172A', '#7C3AED'],
+    sizes: ['256GB']
+  },
+  {
+    id: 'ph-5',
+    title: 'Infinix Note 40 Pro+ 5G (256GB, Vintage Green)',
+    category: 'phones',
+    priceNGN: 295000,
+    originalPriceNGN: 360000,
+    discountPercent: 18,
+    rating: 4.6,
+    reviewsCount: 3100,
+    image: 'https://images.unsplash.com/photo-1563203369-26f2e4a5ccf7?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 120,
+    stockClaimed: 98,
+    isFlashSale: false,
+    sectionTag: 'newArrivals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: '100W All-Round FastCharge2.0, MagCharge wireless charging, 108MP OIS super-zoom camera, and 3D curved AMOLED.',
+    features: ['100W FastCharge', 'MagCharge Wireless', '108MP OIS Camera', 'JBL Sound'],
+    colors: ['#059669', '#D97706'],
+    sizes: ['256GB']
+  },
+  {
+    id: 'ph-6',
+    title: 'Apple iPad Air 11-Inch M2 Chip (128GB, Space Gray)',
+    category: 'phones',
+    priceNGN: 820000,
+    originalPriceNGN: 980000,
+    discountPercent: 16,
+    rating: 4.9,
+    reviewsCount: 1180,
+    seller: 'Apple Authorised Reseller ✓',
+    sellerBadge: 'Official Store',
+    image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 25,
+    stockClaimed: 19,
+    isFlashSale: false,
+    sectionTag: 'recommended',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Liquid Retina display, groundbreaking M2 chip performance, landscape 12MP front camera, Wi-Fi 6E, and Apple Pencil Pro support.',
+    features: ['Apple M2 Chip', 'Liquid Retina Display', 'Wi-Fi 6E', 'Apple Pencil Pro Support'],
+    colors: ['#334155', '#38BDF8'],
+    sizes: ['128GB', '256GB']
+  },
+
+  // --- LAPTOPS & COMPUTERS ---
+  {
+    id: 'lap-1',
+    title: 'Apple MacBook Air 13.6-Inch M3 Chip (16GB RAM, 512GB SSD)',
+    category: 'laptops',
+    priceNGN: 1650000,
+    originalPriceNGN: 1950000,
+    discountPercent: 15,
+    rating: 4.9,
+    reviewsCount: 2150,
+    seller: 'iStore Nigeria ✓',
+    sellerBadge: 'Official Retailer',
+    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 20,
+    stockClaimed: 16,
+    isFlashSale: true,
+    sectionTag: 'flashDeals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-3 Days Express',
+    description: 'Incredibly thin and fast M3 chip, up to 18 hours battery life, 13.6-inch Liquid Retina display, and MagSafe 3 charging.',
+    features: ['Apple M3 Chip', '16GB Unified RAM', '512GB SSD', '18 Hours Battery'],
+    colors: ['#1E293B', '#F1F5F9', '#D97706'],
+    sizes: ['13.6-inch']
+  },
+  {
+    id: 'lap-2',
+    title: 'HP Pavilion 15 Core i7 13th Gen (16GB RAM, 1TB SSD)',
+    category: 'laptops',
+    priceNGN: 980000,
+    originalPriceNGN: 1200000,
+    discountPercent: 18,
+    rating: 4.8,
+    reviewsCount: 1640,
+    seller: 'Fouani Computers ✓',
+    sellerBadge: 'Verified Mall',
+    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 40,
+    stockClaimed: 31,
+    isFlashSale: false,
+    sectionTag: 'bestSellers',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '3-5 Days',
+    description: 'Intel Core i7-1355U processor, FHD IPS touchscreen display, Audio by B&O, fast charging, and backlit keyboard.',
+    features: ['Core i7 13th Gen', 'FHD Touchscreen', 'Audio by B&O', '1TB NVMe SSD'],
+    colors: ['#64748B', '#0F172A'],
+    sizes: ['15.6-inch']
+  },
+  {
+    id: 'lap-3',
+    title: 'Lenovo ThinkPad X1 Carbon Gen 11 (16GB RAM, 512GB SSD)',
+    category: 'laptops',
+    priceNGN: 1420000,
+    originalPriceNGN: 1700000,
+    discountPercent: 16,
+    rating: 4.9,
+    reviewsCount: 890,
+    seller: 'TechPlus Nigeria ✓',
+    sellerBadge: 'Verified Merchant',
+    image: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 15,
+    stockClaimed: 11,
+    isFlashSale: false,
+    sectionTag: 'trending',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Ultralight carbon-fiber business laptop, Intel Evo vPro platform, TrackPoint navigation, and MIL-STD 810H durability.',
+    features: ['Carbon Fiber Body', 'Intel Evo vPro', 'TrackPoint Keyboard', 'MIL-STD 810H'],
+    colors: ['#0F172A'],
+    sizes: ['14-inch']
+  },
+  {
+    id: 'lap-4',
+    title: 'Dell Inspiron 16 5630 Intel Core i5 (16GB RAM, 512GB SSD)',
+    category: 'laptops',
+    priceNGN: 760000,
+    originalPriceNGN: 920000,
+    discountPercent: 17,
+    rating: 4.7,
+    reviewsCount: 1120,
+    image: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 35,
+    stockClaimed: 27,
+    isFlashSale: false,
+    sectionTag: 'newArrivals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '3-5 Days',
+    description: '16-inch 16:10 FHD+ display, quad speakers with Waves MaxxAudio Pro, aluminum top cover, and ExpressCharge.',
+    features: ['16:10 FHD+ Display', 'Quad Speakers', 'ExpressCharge', 'Intel Core i5'],
+    colors: ['#94A3B8'],
+    sizes: ['16-inch']
+  },
+  {
+    id: 'lap-5',
+    title: 'ASUS ROG Strix G16 RTX 4060 Gaming Laptop (16GB, 1TB SSD)',
+    category: 'laptops',
+    priceNGN: 1850000,
+    originalPriceNGN: 2200000,
+    discountPercent: 15,
+    rating: 4.9,
+    reviewsCount: 740,
+    seller: 'Tariff Gaming Hub ✓',
+    sellerBadge: 'Verified Merchant',
+    image: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 12,
+    stockClaimed: 9,
+    isFlashSale: false,
+    sectionTag: 'recommended',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Intel Core i7-13650HX, NVIDIA GeForce RTX 4060 8GB, 165Hz ROG Nebula display, Tri-Fan cooling, and Aura Sync RGB.',
+    features: ['RTX 4060 8GB GPU', '165Hz Nebula Screen', 'Tri-Fan Thermal System', 'RGB Backlit'],
+    colors: ['#0F172A'],
+    sizes: ['16-inch']
+  },
+
+  // --- FASHION & FOOTWEAR ---
+  {
+    id: 'fas-1',
+    title: 'Nike Air Max 270 React Running Sneakers',
+    category: 'fashion',
+    priceNGN: 68000,
+    originalPriceNGN: 110000,
+    discountPercent: 38,
+    rating: 4.8,
+    reviewsCount: 4120,
+    seller: 'Nike Authorized Store ✓',
+    sellerBadge: 'Official Store',
+    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 85,
+    stockClaimed: 72,
+    isFlashSale: true,
+    sectionTag: 'flashDeals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Max Air 270 unit delivers unmatched all-day comfort. Nike React technology delivers an extremely smooth ride.',
+    features: ['Max Air Cushion', 'React Foam Sole', 'Breathable Mesh Upper', 'Rubber Outsole'],
+    colors: ['#EF4444', '#0F172A', '#FFFFFF'],
+    sizes: ['EU 41', 'EU 42', 'EU 43', 'EU 44']
+  },
+  {
+    id: 'fas-2',
+    title: 'Tariff Streetwear 3M Reflective Heavyweight Hoodie',
+    category: 'fashion',
+    priceNGN: 32000,
+    originalPriceNGN: 55000,
+    discountPercent: 41,
+    rating: 4.7,
+    reviewsCount: 1890,
+    image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 150,
+    stockClaimed: 115,
+    isFlashSale: false,
+    sectionTag: 'bestSellers',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: '450GSM ultra-dense organic cotton fleece hoodie featuring 3M reflective Tariff brand embroidery across chest and sleeve.',
+    features: ['450GSM Organic Cotton', '3M Reflective Logo', 'Double Layer Hood', 'Kangaroo Pocket'],
+    colors: ['#0F172A', '#7C3AED', '#059669'],
+    sizes: ['M', 'L', 'XL', 'XXL']
+  },
+  {
+    id: 'fas-3',
+    title: 'Casio G-Shock GA-2100 Black-Out Octagon Watch',
+    category: 'fashion',
+    priceNGN: 115000,
+    originalPriceNGN: 160000,
+    discountPercent: 28,
+    rating: 4.9,
+    reviewsCount: 2780,
+    seller: 'TimeKeepers Mall ✓',
+    sellerBadge: 'Verified Store',
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 40,
+    stockClaimed: 33,
+    isFlashSale: false,
+    sectionTag: 'trending',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Carbon Core Guard structure, 200m water resistance, double LED light, and ultra-slim stealth octagonal bezel.',
+    features: ['Carbon Core Guard', '200M Water Resistant', 'Double LED Light', 'Mineral Glass'],
+    colors: ['#0F172A'],
+    sizes: ['Standard']
+  },
+  {
+    id: 'fas-4',
+    title: 'Urban Anti-Theft Waterproof Laptop Backpack',
+    category: 'fashion',
+    priceNGN: 24500,
+    originalPriceNGN: 42000,
+    discountPercent: 41,
+    rating: 4.8,
+    reviewsCount: 1650,
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 90,
+    stockClaimed: 74,
+    isFlashSale: false,
+    sectionTag: 'newArrivals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Hidden zippers, slash-resistant fabric, integrated USB charging pass-through, and dedicated 17-inch padded sleeve.',
+    features: ['Anti-theft Hidden Zippers', 'USB Charging Port', 'Waterproof Fabric', 'Padded 17" Sleeve'],
+    colors: ['#1E293B', '#64748B'],
+    sizes: ['30L']
+  },
+  {
+    id: 'fas-5',
+    title: 'Levi Strauss 501 Original Fit Denim Jeans',
+    category: 'fashion',
+    priceNGN: 38000,
+    originalPriceNGN: 60000,
+    discountPercent: 36,
+    rating: 4.8,
+    reviewsCount: 2100,
+    image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 70,
+    stockClaimed: 52,
+    isFlashSale: false,
+    sectionTag: 'featuredStores',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'The iconic straight fit with signature button fly, crafted from 100% non-stretch premium cotton denim.',
+    features: ['100% Cotton Denim', 'Signature Button Fly', 'Original Straight Fit', 'Red Tab Badge'],
+    colors: ['#1E3A8A', '#0F172A'],
+    sizes: ['W30 L32', 'W32 L32', 'W34 L32', 'W36 L34']
+  },
+  {
+    id: 'fas-6',
+    title: 'Designer Leather Tote Handbag with Gold Clasp',
+    category: 'fashion',
+    priceNGN: 45000,
+    originalPriceNGN: 78000,
+    discountPercent: 42,
+    rating: 4.7,
+    reviewsCount: 1430,
+    image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 50,
+    stockClaimed: 39,
+    isFlashSale: false,
+    sectionTag: 'recommended',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Structured vegan saffiano leather handbag with spacious interior compartments, top handle, and detachable strap.',
+    features: ['Saffiano Vegan Leather', 'Gold-tone Hardware', 'Multiple Zip Pockets', 'Removable Strap'],
+    colors: ['#78350F', '#0F172A', '#DC2626'],
+    sizes: ['Medium']
+  },
+
+  // --- HOME & KITCHEN ---
+  {
+    id: 'hom-1',
+    title: 'Ninja Air Fryer Max XL 5.5 Litre (Digital Touchscreen)',
+    category: 'home',
+    priceNGN: 115000,
+    originalPriceNGN: 165000,
+    discountPercent: 30,
+    rating: 4.9,
+    reviewsCount: 3200,
+    seller: 'KitchenKing Nigeria ✓',
+    sellerBadge: 'Verified Store',
+    image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 50,
+    stockClaimed: 43,
+    isFlashSale: true,
+    sectionTag: 'flashDeals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Air fry with up to 75% less fat than traditional frying. 5.5L ceramic-coated basket fits up to 3 lbs of French fries.',
+    features: ['5.5L Extra Capacity', '7 One-Touch Programs', 'Dishwasher Safe Basket', '450°F Max Temp'],
+    colors: ['#0F172A'],
+    sizes: ['5.5L XL']
+  },
+  {
+    id: 'hom-2',
+    title: 'NutriBullet Pro 900W High-Speed Countertop Blender',
+    category: 'home',
+    priceNGN: 58000,
+    originalPriceNGN: 85000,
+    discountPercent: 31,
+    rating: 4.8,
+    reviewsCount: 2450,
+    image: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 65,
+    stockClaimed: 49,
+    isFlashSale: false,
+    sectionTag: 'bestSellers',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: '900-watt motor breaks down tough ingredients like seeds, kale, and whole nuts into smooth nutrient-extracted smoothies.',
+    features: ['900W Powerful Motor', 'Extractor Blade Action', 'BPA-Free Cups', 'Recipe Book Included'],
+    colors: ['#64748B', '#0F172A'],
+    sizes: ['900W Set']
+  },
+  {
+    id: 'hom-3',
+    title: 'DeLonghi Dedica Deluxe Pump Espresso Coffee Machine',
+    category: 'home',
+    priceNGN: 185000,
+    originalPriceNGN: 240000,
+    discountPercent: 22,
+    rating: 4.9,
+    reviewsCount: 980,
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 20,
+    stockClaimed: 14,
+    isFlashSale: false,
+    sectionTag: 'trending',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '3-5 Days',
+    description: '15-bar professional pressure delivers barista-quality espresso, cappuccinos, and lattes with adjustable milk frother.',
+    features: ['15-Bar Italian Pump', 'Manual Cappuccino Frother', 'Compact 6" Width', 'Stainless Steel'],
+    colors: ['#E2E8F0', '#0F172A'],
+    sizes: ['15-Bar']
+  },
+  {
+    id: 'hom-4',
+    title: 'Scanfrost 1.8L Stainless Steel Rapid Electric Kettle',
+    category: 'home',
+    priceNGN: 18500,
+    originalPriceNGN: 28000,
+    discountPercent: 33,
+    rating: 4.7,
+    reviewsCount: 3890,
+    image: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 180,
+    stockClaimed: 152,
+    isFlashSale: false,
+    tariffRatePercent: 0,
+    sectionTag: 'newArrivals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: '1500W quick boiling electric kettle with auto shut-off, boil-dry protection, 360-degree swivel base, and cool touch handle.',
+    features: ['1500W Fast Boil', 'Auto Shut-Off', 'Boil-Dry Protection', '1.8L Capacity'],
+    colors: ['#CBD5E1'],
+    sizes: ['1.8 Litres']
+  },
+  {
+    id: 'hom-5',
+    title: 'Stackable Acrylic Pantry & Fridge Storage Organizers (6-Pack)',
+    category: 'home',
+    priceNGN: 22000,
+    originalPriceNGN: 35000,
+    discountPercent: 37,
+    rating: 4.8,
+    reviewsCount: 1410,
+    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 110,
+    stockClaimed: 88,
+    isFlashSale: false,
+    sectionTag: 'recommended',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Clear shatterproof BPA-free stackable bins with built-in handles to keep food, fruits, and pantry goods organized.',
+    features: ['Shatterproof Acrylic', 'Built-in Handles', 'BPA-Free Clear Plastic', '6-Piece Set'],
+    colors: ['#F8FAFC'],
+    sizes: ['6-Pack']
+  },
+
+  // --- ELECTRONICS & AUDIO ---
+  {
+    id: 'elec-1',
+    title: 'Sony WH-1000XM5 Wireless Noise Canceling Headphones',
+    category: 'electronics',
+    priceNGN: 420000,
+    originalPriceNGN: 520000,
+    discountPercent: 19,
+    rating: 4.9,
+    reviewsCount: 5120,
+    seller: 'Sony Official Store ✓',
+    sellerBadge: 'Official Brand Store',
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 40,
+    stockClaimed: 34,
+    isFlashSale: true,
+    sectionTag: 'flashDeals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Industry-leading noise canceling with Auto NC Optimizer, 30-hour battery life, and crystal-clear hands-free calling.',
+    features: ['Auto NC Optimizer', '30 Hours Battery', 'Precise Voice Pickup', 'Speak-to-Chat'],
+    colors: ['#0F172A', '#F1F5F9'],
+    sizes: ['Standard']
+  },
+  {
+    id: 'elec-2',
+    title: 'JBL Charge 5 Portable Waterproof Bluetooth Speaker',
+    category: 'electronics',
+    priceNGN: 145000,
+    originalPriceNGN: 195000,
+    discountPercent: 25,
+    rating: 4.8,
+    reviewsCount: 4100,
+    seller: 'JBL Sound Hub ✓',
+    sellerBadge: 'Verified Store',
+    image: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 75,
+    stockClaimed: 58,
+    isFlashSale: false,
+    sectionTag: 'bestSellers',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'JBL Original Pro Sound with long excursion driver, separate tweeter, dual passive radiators, 20 hours playtime, and built-in powerbank.',
+    features: ['IP67 Waterproof/Dustproof', '20 Hours Playtime', 'Built-in Powerbank', 'JBL PartyBoost'],
+    colors: ['#0F172A', '#DC2626', '#0284C7'],
+    sizes: ['Standard']
+  },
+  {
+    id: 'elec-3',
+    title: 'Anker 737 Power Bank PowerCore 24,000mAh 140W',
+    category: 'electronics',
+    priceNGN: 110000,
+    originalPriceNGN: 150000,
+    discountPercent: 26,
+    rating: 4.9,
+    reviewsCount: 2310,
+    seller: 'Anker Official Direct ✓',
+    sellerBadge: 'Official Store',
+    image: 'https://images.unsplash.com/photo-1609592424074-1249b6b7a5a8?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 60,
+    stockClaimed: 48,
+    isFlashSale: false,
+    sectionTag: 'trending',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Ultra-powerful 140W fast-charging powerbank with smart digital display, charging laptops, iPhones, and Android devices simultaneously.',
+    features: ['140W Two-Way Fast Charge', 'Smart Color Display', '24,000mAh Capacity', 'PowerIQ 4.0'],
+    colors: ['#0F172A'],
+    sizes: ['24,000mAh']
+  },
+  {
+    id: 'elec-4',
+    title: 'Apple Watch Series 9 GPS 45mm (Midnight Aluminum)',
+    category: 'electronics',
+    priceNGN: 520000,
+    originalPriceNGN: 640000,
+    discountPercent: 18,
+    rating: 4.9,
+    reviewsCount: 3410,
+    image: 'https://images.unsplash.com/photo-1510017803434-a899398421b3?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 30,
+    stockClaimed: 24,
+    isFlashSale: false,
+    sectionTag: 'newArrivals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'S9 SiP with Double Tap gesture control, brighter Retina display, Precision Finding for iPhone, ECG app, and Blood Oxygen tracking.',
+    features: ['S9 SiP Double Tap', 'Brighter Always-On Screen', 'ECG & SpO2 App', 'Crash Detection'],
+    colors: ['#0F172A', '#E2E8F0', '#DC2626'],
+    sizes: ['45mm']
+  },
+  {
+    id: 'elec-5',
+    title: 'Logitech G Pro X Superlight 2 Wireless Gaming Mouse',
+    category: 'electronics',
+    priceNGN: 165000,
+    originalPriceNGN: 210000,
+    discountPercent: 21,
+    rating: 4.8,
+    reviewsCount: 1290,
+    image: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 45,
+    stockClaimed: 36,
+    isFlashSale: false,
+    sectionTag: 'recommended',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Iconic 60g esports mouse with LIGHTFORCE hybrid optical-mechanical switches and HERO 2 sensor up to 32,000 DPI.',
+    features: ['60g Ultra Light', 'HERO 2 Sensor 32K DPI', 'LIGHTFORCE Switches', '95h Battery'],
+    colors: ['#0F172A', '#F8FAFC', '#EC4899'],
+    sizes: ['Standard']
+  },
+
+  // --- BEAUTY & GROOMING ---
+  {
+    id: 'bt-1',
+    title: 'CeraVe Hydrating Facial Cleanser & Hyaluronic Acid Set',
+    category: 'beauty',
+    priceNGN: 24000,
+    originalPriceNGN: 38000,
+    discountPercent: 36,
+    rating: 4.9,
+    reviewsCount: 6890,
+    seller: 'BeautyWorld Nigeria ✓',
+    sellerBadge: 'Verified Merchant',
+    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 150,
+    stockClaimed: 132,
+    isFlashSale: true,
+    sectionTag: 'flashDeals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Developed with dermatologists. Contains 3 essential ceramides and hyaluronic acid to cleanse without stripping natural moisture.',
+    features: ['3 Essential Ceramides', 'Hyaluronic Acid', 'Non-Comedogenic', 'Dermatologist Tested'],
+    colors: ['#0284C7'],
+    sizes: ['473ml Pack']
+  },
+  {
+    id: 'bt-2',
+    title: 'Dyson Airwrap Multi-Styler Complete Long (Nickel/Copper)',
+    category: 'beauty',
+    priceNGN: 720000,
+    originalPriceNGN: 890000,
+    discountPercent: 19,
+    rating: 4.9,
+    reviewsCount: 1890,
+    seller: 'Dyson Official Store ✓',
+    sellerBadge: 'Official Store',
+    image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 18,
+    stockClaimed: 14,
+    isFlashSale: false,
+    sectionTag: 'bestSellers',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'Harnesses Coanda airflow to curl, shape, smooth and hide flyaways with no extreme heat damage.',
+    features: ['Coanda Airflow Styling', 'No Extreme Heat Damage', '6 Styling Attachments', 'Intelligent Heat Control'],
+    colors: ['#B45309', '#475569'],
+    sizes: ['Complete Set']
+  },
+  {
+    id: 'bt-3',
+    title: 'Philips Norelco Multigroom Series 7000 All-in-One Trimmer',
+    category: 'beauty',
+    priceNGN: 48000,
+    originalPriceNGN: 72000,
+    discountPercent: 33,
+    rating: 4.8,
+    reviewsCount: 3120,
+    image: 'https://images.unsplash.com/photo-1621607512214-68297480165e?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 80,
+    stockClaimed: 64,
+    isFlashSale: false,
+    sectionTag: 'trending',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'DualCut self-sharpening steel blades with 19 attachments for beard, hair, body, and nose trimming. 5-hour runtime.',
+    features: ['19 Attachments Set', 'DualCut Self-Sharpening', '5 Hours Battery', 'Washable Metal Guard'],
+    colors: ['#334155'],
+    sizes: ['19-in-1 Kit']
+  },
+  {
+    id: 'bt-4',
+    title: 'Tom Ford Oud Wood Eau De Parfum (100ml Spray)',
+    category: 'beauty',
+    priceNGN: 295000,
+    originalPriceNGN: 370000,
+    discountPercent: 20,
+    rating: 4.9,
+    reviewsCount: 1420,
+    seller: 'Perfume Gallery ✓',
+    sellerBadge: 'Verified Store',
+    image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 25,
+    stockClaimed: 19,
+    isFlashSale: false,
+    sectionTag: 'newArrivals',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'A distinctive, artisanal fragrance featuring rare oud wood, rosewood, cardamom, and tonka bean.',
+    features: ['100ml Signature Spray', 'Smoky Oud & Cardamom', 'Long-lasting Projection', 'Authentic Sealed Box'],
+    colors: ['#0F172A'],
+    sizes: ['100ml']
+  },
+  {
+    id: 'bt-5',
+    title: 'Fenty Beauty Gloss Bomb Universal Lip Luminizer',
+    category: 'beauty',
+    priceNGN: 28000,
+    originalPriceNGN: 42000,
+    discountPercent: 33,
+    rating: 4.8,
+    reviewsCount: 4210,
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
+    stockTotal: 110,
+    stockClaimed: 92,
+    isFlashSale: false,
+    sectionTag: 'recommended',
+    tariffDutyAmountNGN: 0,
+    guaranteedDeliveryDays: '2-4 Days',
+    description: 'The ultimate gotta-have-it lip gloss with explosive shine that feels as good as it looks.',
+    features: ['Conditioning Shea Butter', 'Peach Vanilla Scent', 'Non-Sticky Shine', 'Universal Shade'],
+    colors: ['#F472B6', '#D97706'],
+    sizes: ['9ml']
+  }
+];
+
+export const mockProducts = masterProductsList;
 
 export const promoCodes = {
   'TARIFF2026': { discountPercent: 20, desc: '20% OFF Site-wide' },
   'FLASH80': { discountPercent: 30, desc: 'Extra 30% OFF Flash Sale' },
-  'TARIFFVIP': { discountAmount: 15, desc: '$15 OFF Tariff VIP Gift' }
+  'TARIFFVIP': { discountAmount: 15000, desc: '₦15,000 OFF Tariff VIP Gift' }
 };
