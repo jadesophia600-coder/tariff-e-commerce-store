@@ -29,8 +29,7 @@ import {
   Grid,
   Sun,
   Moon,
-  ShieldCheck,
-  Award
+  ShieldCheck
 } from 'lucide-react';
 
 import './styles/index.css';
@@ -99,7 +98,7 @@ const MainContent = () => {
   });
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-main)', paddingBottom: '60px' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-main)' }}>
       
       {/* Toast Notifications Overlay */}
       <div className="toast-container">
@@ -117,7 +116,7 @@ const MainContent = () => {
         title={`Click to switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
         style={{
           position: 'fixed',
-          bottom: '75px',
+          bottom: '24px',
           left: '24px',
           zIndex: 999,
           background: theme === 'light' ? '#0F172A' : '#F8FAFC',
@@ -259,7 +258,7 @@ const MainContent = () => {
 
       <Footer />
 
-      {/* Sticky Mobile Bottom Navigation */}
+      {/* Sticky Mobile Bottom Navigation (Visible on mobile screens only) */}
       <MobileBottomNav />
 
       {/* Interactive Modals */}
