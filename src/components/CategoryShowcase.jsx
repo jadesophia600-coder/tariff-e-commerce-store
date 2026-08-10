@@ -35,8 +35,8 @@ export const CategoryShowcase = () => {
               <Grid size={22} />
             </div>
             <div>
-              <h2 style={{ fontSize: '1.55rem', fontWeight: 800, color: '#0F172A' }}>POPULAR DEPARTMENTS</h2>
-              <p style={{ color: '#64748B', fontSize: '0.85rem' }}>Browse factory direct items by specialized marketplace section</p>
+              <h2 style={{ fontSize: '1.55rem', fontWeight: 800, color: 'var(--text-main)' }}>POPULAR DEPARTMENTS</h2>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Browse factory direct items by specialized marketplace section</p>
             </div>
           </div>
 
@@ -68,7 +68,7 @@ export const CategoryShowcase = () => {
                   border: isSelected ? '2px solid var(--primary)' : '1px solid var(--border-color)',
                   boxShadow: isSelected ? '0 0 20px rgba(124, 58, 237, 0.25)' : 'var(--shadow-sm)',
                   transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                  background: '#FFFFFF'
+                  background: 'var(--bg-card)'
                 }}
                 className="category-card-hover"
               >
